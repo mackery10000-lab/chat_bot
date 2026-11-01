@@ -1,91 +1,20 @@
-# 코드 구조와 확장 지점
+# 종착역이 없는 열차 v1.1 구조
 
-이 저장소는 **한 Flask 앱이 화면과 API를 함께 제공하는 기본 구조**입니다. 모델 호출·자료 검색·이미지 선택은 각각 파일을 두고 `chatbot_service.py`가 실행 순서를 연결합니다. 파일을 늘리거나 프런트와 서버를 분리해도 됩니다. 구조를 바꾼 뒤에는 실행 방법과 API 설명을 함께 고치세요.
+원래 app.py와 services·config·templates·public·data·tests를 유지한다. 별도 게임 루트나 프런트 프로젝트를 만들지 않는다. .env는 원본 바이트 그대로다.
 
-## 현재 디렉터리
+1. app.py는 기존 페이지와 JSON API, 무작위 게임 쿠키, 길이·자료형·출처·오류 응답을 담당한다.
+2. generator.py의 interpret는 실제 모델 JSON Schema로 행동·대상·부정·동일 물건·특징 근거를 해석한다. 최종 실행 절에서만 대상을 정규화하고 다른 명시적 행동을 단순 수락으로 덮어쓰지 않는다.
+3. chatbot_service.py 안의 GameEngine이 장소·소유·열람·원본 반환·대화·퍼즐·엔딩을 판정한다. 외형 사실 공개와 증언 아이템은 같은 서버 사건이다. 미언급은 이전 특징을 지우지 않는다.
+4. retriever.py는 허용 fact_id·인물·공개 조건으로 자료를 먼저 제한한다. 분실 사실과 외형 사실을 분리한다.
+5. generate는 해당 NPC의 승인된 말머리를 실제 모델로 고른다. 서버 확정 대사를 그대로 결합하며, approved_reply는 허용 조합 외의 임의 사실·문장·정답을 주 화면과 이력에 확정하지 않는다.
+6. 같은 파일의 GameStore가 상태·이력·동일 요청 결과를 SQLite에 함께 커밋한다. AI 실패 시 턴을 커밋하지 않고 예약을 해제한다. 마지막 기회는 최종 확인에서만 소비한다.
+7. image_selector.py는 7개 장소, 문 개방, 손전등 시야, 현재 NPC와 표정에 따라 배경·인물·조사점 좌표를 제공한다. 임의의 답변 키워드로 배경을 바꾸지 않는다.
+8. 기존 chatbot.js와 style.css가 일자 미니맵, 배경 조사점, 대화 시작·종료, 집중 조사, 획득 알림, 실제 준비 시간의 장면 로딩을 구현한다.
 
-```text
-app.py                         화면 라우트, 채팅 API, 입력·응답 검증
-config/chatbot_config.json     캐릭터 이름·소개·첫 인사·성격·말투·세계관
-services/
-  retriever.py                 질문에 맞는 자료 검색 경계
-  generator.py                 캐릭터 답변 생성 경계
-  image_selector.py            생성된 답변에 맞는 이미지 선택 경계
-  chatbot_service.py           검색 → 생성 → 이미지 선택 → API 응답 조립
-templates/                     Flask/Jinja 예시 화면 (메인 페이지 포함)
-public/assets/                 브라우저가 불러오는 CSS·JS·이미지 파일
-data/knowledge/                검색 자료의 원본 예시
-data/images/                   이미지 목록·설명·임베딩 인덱스 준비 위치
-tests/                         현재 Flask 데모의 스모크 테스트
-Dockerfile                     배포용 Gunicorn 이미지
-docker-compose.yml             로컬 개발용 컨테이너 실행
-```
+화면 클릭의 select_npc·present·end_talk·operate·read_item도 자유 채팅과 같은 엔진을 쓴다. 화면에서 정한 행동을 다시 AI 해석에 보내지 않는다. select_npc는 첫 인사를 즉시 반환하고 화자를 보존한다.
 
-현재 `DemoRetriever.search()`는 빈 목록을 반환하고 `DemoGenerator.generate()`는 고정된 데모 문장을 만듭니다. `DemoImageSelector.select()`는 `None`을 반환합니다. `data/knowledge/`의 파일은 자동으로 읽거나 인덱싱하지 않습니다. 메모리·로그인·이미지 검색·영속 저장소도 구현되어 있지 않습니다.
+요청 본문은 message 또는 action 중 하나다. 응답은 기존 reply·image·sources와 game·scene·ui·events를 유지한다. sources는 허용 자료 제목으로서 문장별 인용을 뜻하지 않는다. ui.ignored의 빈 reply는 불가능한 행동을 의도적으로 무시한 경우이며 API 실패와 다르다.
 
-## 요청이 흐르는 순서
+장면 이미지의 다운로드·디코딩은 반영 전에 기다린다. 실패 시 마지막 요청 ID를 보존하여 서버에서 이미 커밋되었어도 같은 결과를 안전하게 다시 받을 수 있다. 장면 이동 중인 dialog는 닫아 중앙 로딩이 가려지지 않게 한다. 문서/장치 확대는 dialog의 반투명 검은 패널과 흐린 backdrop을 사용한다.
 
-```text
-브라우저 → GET /, /detail, /chat → app.py → config + templates + public
-
-브라우저 → POST /api/chat
-            → app.py: JSON 입력 검증, config 로드
-            → ChatbotService.generate_response()
-              → retriever.search(question) → KnowledgeHit 목록
-              → generator.generate(question, username, character, knowledge) → 답변 문자열
-              → image_selector.select(reply, character) → 이미지 URL 또는 None
-              → {reply, image, sources}
-            → app.py: 응답 형식 검증 → 브라우저
-```
-
-`app.py`는 HTTP 요청과 오류를 맡고, `services/`는 답변 흐름을 맡습니다. 캐릭터 설정은 화면과 생성기에 같은 JSON으로 전달됩니다. 현재 생성기는 설정을 사용하지 않으므로, 실제 모델을 붙일 때 `persona`의 성격·말투·세계관을 프롬프트에 반영해야 합니다. `GET /health`는 앱 프로세스 응답만 확인합니다.
-
-## 처음 구현할 때의 순서
-
-1. `config/chatbot_config.json`의 `persona`를 채우고 화면에 보이는 이름·소개를 바꿉니다.
-2. `services/generator.py`의 `generate()`에 모델을 연결합니다. 인자는 `question`(입력), `username`, `character`(설정 JSON), `knowledge`(검색 결과)입니다. 반환값은 **답변 문자열**입니다. 첫 단계에서는 빈 `knowledge`로 동작해도 됩니다. 설치부터 코드 교체까지는 [OpenAI 연결 예시](MODEL_SETUP.md)를 보세요.
-3. 검색할 세계관 자료가 있을 때 `services/retriever.py`의 `search()`를 구현합니다. 반환값은 `KnowledgeHit(title, content)` 목록입니다. 원본 파일을 저장하는 것과 인덱스를 만드는 작업은 다릅니다.
-4. 화면에 쓸 이미지 파일은 브라우저가 접근할 수 있도록 `public/assets/images/`에 두고, `data/images/`에는 이미지 ID·파일 경로·이름·장면 설명 같은 목록을 둡니다. `public/`은 이미지 파일을 제공하는 정적 폴더이며 메인 페이지는 `templates/`에 있습니다. 예를 들어 `public/assets/images/scene.png`는 브라우저 경로 `/assets/images/scene.png`로 열립니다. 현재 `public/assets/images/`에는 로고만 있고 `data/images/`에는 이 안내 문서만 있습니다. `services/image_selector.py`에서 감정·상황 라벨로 경로를 고르거나, 답변과 장면 설명의 텍스트 임베딩을 비교하거나, 이미지·텍스트 모델로 이미지 자체와 답변의 임베딩을 비교할 수 있습니다. 반환값은 브라우저에서 열리는 이미지 URL 또는 `None`입니다.
-5. `services/chatbot_service.py`는 세 기능의 호출 순서와 JSON 조립을 맡습니다. 이미지 메타데이터나 API 응답 형식을 바꿀 때 이 파일과 `app.py`, 브라우저 JS를 함께 확인합니다.
-
-각 파일에 실제 구현을 넣으면 기존 화면에서 `POST /api/chat`을 통해 확인할 수 있습니다. 프런트를 별도로 만들 때는 API 주소와 응답 형식을 맞추세요.
-
-## 각 모듈에서 구현할 내용
-
-| 위치 | 지금 있는 것 | 확장 예시 |
-| --- | --- | --- |
-| `services/retriever.py` | `KnowledgeHit(title, content)`, 빈 검색 결과 | 원본 자료 정제·분할, ChromaDB 인덱스 조회, 키워드 검색, 검색 실패 처리 |
-| `services/generator.py` | 질문을 되돌려주는 데모 문장 | 캐릭터 설정·검색 결과를 넣은 프롬프트, 모델 API 호출, 시간 초과와 실패 처리 |
-| `services/image_selector.py` | 항상 `None`인 이미지 선택 | 라벨 기반 선택 또는 답변·이미지 설명/이미지 임베딩 비교, 메타데이터 조회, 공개 URL 반환 |
-| `services/chatbot_service.py` | 검색·생성·이미지 선택 호출과 `sources` 조립 | 검색 결과 점검, 응답 후처리, 메모리 결합 |
-| `app.py` | 라우트·입력 검증·오류 응답 | 인증, 요청 제한, 새 API, 프런트 분리 시 CORS·API 주소 설정 |
-| `data/knowledge/` | 연습용 원본 문서 | 사용 권한을 확인한 실제 자료. 인덱스 저장 위치는 별도로 결정 |
-| `templates/`, `public/` | 세 가지 예시 화면과 채팅 JS, 로고 | 화면 추가·교체 또는 독립 프런트엔드. 브라우저에 보여줄 대화용 이미지는 `public/assets/images/` 등에 둠 |
-
-새 기능은 관련 폴더에 파일을 더해 연결하면 됩니다. 예를 들어 인덱스를 만드는 배치 작업은 `scripts/`, 대화 저장 코드는 `services/memory.py`, 외부 API 설정은 `config/`에 둘 수 있습니다. 이는 확장 예시이며 해당 폴더와 기능은 아직 제공하지 않습니다.
-
-## 검색과 답변의 계약
-
-검색기는 질문을 받아 `KnowledgeHit` 목록을 반환합니다. `title`은 자료를 구분하는 이름, `content`는 생성기에 줄 실제 내용입니다. 검색 결과가 없다면 빈 목록을 반환합니다. 생성기는 질문·사용자 이름·캐릭터 설정·검색 결과를 받아 **문자열 답변**을 반환합니다. 현재 서비스는 검색 결과의 제목을 모두 `sources`에 넣습니다. 개발 중 어떤 자료가 검색됐는지 확인하는 데 쓸 수 있지만, 실제 답변에 사용됐다는 뜻은 아닙니다.
-
-API의 현재 성공 형식은 다음과 같습니다.
-
-```json
-{"reply":"사용자에게 보여줄 답변","image":null,"sources":[]}
-```
-
-`reply`는 문자열, `image`는 브라우저에서 접근할 수 있는 URL 또는 `null`, `sources`는 개발 중 검색된 자료 제목을 확인하기 위한 목록입니다. 채팅 화면에는 답변과 이미지만 표시합니다. 입력 오류는 `400`/`413`, 서비스 오류는 `500`으로 반환합니다. 브라우저 JS는 `/api/chat`을 같은 도메인의 상대 경로로 호출합니다. 프런트와 API를 분리할 때는 주소와 교차 출처 요청 정책을 맞추세요. 요청·응답 형식을 바꾼다면 프런트와 서버를 함께 수정하면 됩니다. 프로필의 `thumbnail`과 답변에 첨부하는 `image`는 별개입니다.
-
-## RAG를 붙이는 경우
-
-1. 원본 문서의 출처와 사용 권한을 확인하고, 필요한 단위로 나눕니다.
-2. 인덱스 생성 작업을 대화 요청과 분리합니다. 배포 후 인덱스를 어디에 둘지 먼저 정합니다.
-3. `retriever.search()`에서 관련 조각을 찾아 내용과 출처를 반환합니다.
-4. `generator.generate()`에서 캐릭터 설정·질문·검색 결과를 사용해 답변을 만듭니다.
-5. 자료가 없는 질문, 틀린 자료가 검색된 질문, 모델 API가 실패한 경우를 시험합니다.
-
-수업에서 다룬 ChromaDB는 이 경계에 붙일 수 있는 선택지입니다. Render·Vercel 같은 환경의 로컬 파일을 **지속 저장소로 가정하지 마세요.** 인덱스를 빌드 시점에 읽기 전용으로 포함할지, 외부 저장소를 쓸지, 다른 검색 방식을 쓸지 팀의 자료 갱신 요구에 따라 결정하세요. RAG가 필요 없다면 `DemoRetriever`를 그대로 두거나 검색 단계를 제거하고, 대신 답변 생성·상태 관리 등 필요한 부분을 구현하면 됩니다.
-
-## 검증
-
-`python -m unittest discover -s tests -v`는 화면·정적 파일·API 오류와 서비스의 검색기→생성기 연결을 확인합니다. 답변별 이미지 선택 품질, 실제 자료 검색 품질, 모델 답변의 캐릭터 일관성, 배포 환경의 저장 동작은 구현한 팀이 별도로 확인해야 합니다.
+전체 역할표, 실행 코드, 수정 항목, 실제 검증 범위는 루트 README를 확인한다.

@@ -1,32 +1,91 @@
-# 대화용 이미지 자료
+# 사용 이미지와 UI 제작 기준
 
-`public/assets/images/`는 브라우저에 보여줄 실제 이미지 파일을 두는 곳입니다. `public/`은 정적 파일 폴더이고, 메인 페이지는 `templates/`에 있습니다. 현재 이미지 폴더에는 로고만 있습니다. `data/images/`에는 이미지 ID·파일 경로·이름·장면 설명·사용 권한 등을 담은 목록이나 임베딩 인덱스를 둘 수 있습니다. 파일이 `public/assets/images/scene.png`에 있으면 브라우저에 전달할 경로는 `/assets/images/scene.png`입니다. 현재 `data/images/`에는 안내 문서만 있고, 이미지 목록과 인덱스는 없습니다.
+사용자가 제공한 9장의 레퍼런스에서 인물 5명, 빈 목재 객차, 보관함·문서·제어 장치, 세로형 대화 화면을 검토했다. 게임에는 원문에 없는 열쇠·추가 책·새 단서·조연을 등록하지 않았다.
 
-두 폴더의 항목은 목록의 경로로 연결합니다. 예를 들어 `data/images/catalog.json`에 다음처럼 기록할 수 있습니다.
+## 적용한 표현
 
-```json
-[
-  {
-    "id": "joy_01",
-    "path": "/assets/images/joy_01.png",
-    "label": "기쁨",
-    "description": "캐릭터가 밝게 웃으며 친구를 반기는 장면"
-  }
-]
-```
+짙은 목재와 검은 그림자, 호박색 전등, 황동 테두리, 미색 종이와 붉은 승차권을 사용한다. 작은 문서 글자와 퍼즐 입력은 실제 HTML 텍스트로 표시한다. 흐린 레퍼런스의 가짜 글자를 그대로 게임 정보로 사용하지 않는다.
 
-이때 실제 파일은 `public/assets/images/joy_01.png`에 둡니다. 이 JSON은 구조를 보여주는 예시이며 현재 제공되는 파일은 아닙니다. 베이스 코드가 자동으로 읽지는 않으므로 팀이 선택 로직에서 불러와야 합니다.
+레퍼런스의 화면 구성을 기존 세 HTML 파일과 CSS·JS로 구현했다. 보관함은 물건 목록과 문서 면, 미니맵은 현재 위치와 잠금, 제어 장치는 목적지와 네 자리 입력을 보여준다. 대화 상대를 고른 뒤에는 해당 인물에 집중하고, 어두운 3호차의 인물은 손전등 사용 전 공개하지 않는다.
 
-먼저 팀이 사용할 이미지마다 장면 설명을 붙이고, 간단한 상황별 규칙으로 이미지 출력과 생략을 확인할 수 있습니다. 이후 팀이 고른 이미지와 직접 작성한 테스트 답변 문장으로 선택 결과를 점검합니다.
+## 최종 자산 경로
 
-이미지를 고르는 방법은 프로젝트에 맞춰 선택합니다.
+프로젝트 기준 경로이며 모두 public/assets/images 안에 있다. 실제 실행 시 /assets/images/파일명으로 제공한다.
 
-- **감정·상황 라벨로 선택:** `happy`, `sad`처럼 라벨을 정하고, 규칙이나 분류기가 답변의 라벨을 고른 뒤 해당 이미지 경로를 반환합니다. 감정이나 장면 종류가 몇 가지로 분명할 때 간단합니다. 파일명만 바꿔서는 자동 분류되지 않으며 선택 로직이 필요합니다. 임베딩 유사도 요구가 있다면 이 방법만으로는 충족하지 않습니다.
-- **장면 설명의 텍스트 유사도로 선택:** 이미지마다 장면·인물·분위기 설명을 작성하고, 답변과 설명을 같은 텍스트 임베딩 모델로 비교합니다. 이미지 픽셀이 아니라 이미지에 붙인 설명을 기준으로 찾으므로, 설명을 구체적으로 작성해야 합니다. AI 이미지의 생성 프롬프트를 출발점으로 삼되, 완성된 이미지에 실제로 보이는 내용을 설명에 반영합니다.
-- **이미지 자체의 유사도로 선택:** [CLIP](https://github.com/openai/CLIP) 같은 이미지·텍스트 모델로 이미지와 답변을 벡터화해 비교합니다. 이미지 내용을 직접 반영하는 방식입니다. 원본 OpenAI CLIP은 [영어 중심이며 배포 사용을 적용 범위 밖으로 둡니다](https://github.com/openai/CLIP/blob/main/model-card.md). 다른 모델을 포함해 한국어 지원과 배포 조건을 확인하세요.
+| 파일 | 용도 | 기준 자료 |
+| --- | --- | --- |
+| scene_01.png | 기본 목재 객차 | 사용자 1000264287.png 원본을 그대로 복사 |
+| portrait_01.png | 발목을 다친 탐험가 | 사용자 1000264286.png의 인물·복장 |
+| portrait_02.png | 노인 | 사용자 1000264283.png의 인물·복장 |
+| portrait_03.png | 청소원 | 사용자 1000264284.png의 인물·복장 |
+| portrait_04.png | 승무원 | 사용자 1000264282.png의 인물·복장 |
+| portrait_05.png | 기관사 | 사용자 1000264285.png의 인물·복장 |
+| scene_02.png | 승무원실 | 시나리오의 작은 책상·서류 보관함, 동일 객차 그림체 |
+| scene_03.png | 기관실 | 시나리오의 운전 레버·제어 장치·시계, 동일 그림체 |
+| scene_04.png | 최종 승강장 | 시나리오의 폐쇄된 산악역과 정차한 열차 |
+| evidence_01.png | 신문의 열차 자료 사진 | 원문에 명시된 옛 13-Fri 열차 사진 |
 
-텍스트 설명이나 이미지 벡터는 미리 만들어 두고, 대화 중에는 답변 벡터와 비교합니다. 유사도가 기준에 못 미치면 이미지를 보내지 않습니다. OpenAI 임베딩 API 같은 텍스트 임베딩은 장면 설명 방식에 사용할 수 있습니다. 
+hateslop-logo.png는 원본 베이스 파일을 보존했으며 현재 게임 장면에는 사용하지 않는다. 인물 자산은 실제 알파 채널을 가진 PNG다. 배경의 그림 속 장식은 별도 획득 아이템이나 암호가 아니다.
 
-임베딩 모델이 벡터를 만들고, ChromaDB는 벡터와 메타데이터를 저장하고 가까운 후보를 검색합니다. 후보가 적으면 직접 유사도를 계산해도 됩니다. ChromaDB가 이미지 임베딩을 만드는 것은 아닙니다. `services/image_selector.py`가 선택한 이미지 URL을 반환하는 구현 자리입니다.
+## 생성 방식과 프롬프트 구성
 
-이미지·설명 벡터와 인덱스는 채팅 요청마다 새로 만들지 말고 미리 준비하세요. 배포 환경에서 인덱스를 읽을 수 있는지 확인합니다. API 키나 공개 권한이 없는 자료는 이 폴더를 포함해 Git에 올리지 마세요.
+생성 자산 9개는 내장 image_gen 도구로 제작했다. 별도의 CLI나 사용자의 API 키를 이미지 제작에 사용하지 않았다. 이미지 생성은 제작 과정이며 게임 실행 중 실시간 이미지 생성과 구분한다.
+
+공통 인물 프롬프트는 다음 지침을 적용했다.
+
+“Use case: identity-preserve. Asset type: ONE production character sprite for a Korean train mystery visual novel. The uploaded image defines the character identity and costume. Clean single-character composition, fully inside frame, hand-painted Korean graphic novel, delicate ink, textured sepia and muted warm amber lighting. Genuinely transparent alpha background. No backdrop, white rectangle, contact sheet, panels, labels, speech bubble, text or other people. Reusable sprite for a train background.”
+
+인물별로 다음 조건을 더했다.
+
+- 탐험가: 친근한 젊은 동아시아 남성, 헝클어진 짙은 갈색 머리, 올리브 탐험 재킷, 회색 셔츠와 갈색 바지, 배낭 끈. 발목 부상으로 앉은 자세, 무릎 위에 손을 두고 여유로운 표정. 새 단서 소품을 추가하지 않는다.
+- 노인: 마른 동아시아 노인, 헝클어진 회색 머리, 깊은 주름과 피곤한 눈, 낡은 갈색 재킷과 체크 셔츠, 검은 바지와 레퍼런스의 지팡이. 앉아 지팡이에 손을 올린 자세. 승차권·커피잔을 새로 쥐여주지 않는다.
+- 청소원: 인자한 중년 여성, 둥근 얼굴, 느슨한 앞머리와 낮은 머리 묶음, 소매를 걷은 청회색 작업복과 허리 청소 도구. 공손하게 두 손을 모은 자세. 명찰에는 글자를 넣지 않는다.
+- 승무원: 젊은 성인 여성, 피곤하지만 주의 깊은 얼굴, 낮게 묶은 갈색 머리, 황동 장식 검은 철도 모자, 흰 블라우스, 검은 조끼와 리본, 검은 치마. 조심스럽게 손을 모은 자세.
+- 기관사: 진지하고 피곤한 중년 남성, 짧은 검은 머리, 황동 띠 철도 모자, 검은 제복과 흰 셔츠·넥타이·금색 소매 장식. 격식 있는 자세.
+
+공통 배경 프롬프트는 다음 지침을 적용했다.
+
+“Use case: stylized-concept. Asset type: production background for a Korean train mystery game. The uploaded empty carriage defines illustration, materials and mood. One landscape scene, detailed hand-painted illustration, delicate ink, subdued amber and umber, aged dark wood, black shadow and brass accents. Grounded architecture. No contact sheet, UI panels, labels, watermark, people or added plot clues.”
+
+장면별로 다음 범위만 사용했다.
+
+- 승무원실: 작은 목재 책상, 글자가 없는 서류, 닫힌 서류 보관함, 따뜻한 천장등. 문에서 보는 구도. 달력·열쇠·금고·추가 수수께끼 소품은 넣지 않는다.
+- 기관실: 낡은 운전 레버와 표시 없는 제어 장치, 작은 시계, 야간 창밖. 비밀번호·역명·추가 단서가 되는 글자를 넣지 않는다. 실제 장치의 숫자와 입력은 코드가 관리한다.
+- 승강장: 낡은 열차가 멈춘 산악역의 승강장, 밤의 옅은 빛과 따뜻한 전등, 열린 열차 문. 읽을 수 있는 역명판이나 새로운 사건을 넣지 않는다.
+
+## 이미지 선택과 오류 처리
+
+services/image_selector.py가 장소·시야·선택한 NPC·정차 여부로 자산을 선택한다. 대사에 특정 단어가 들어갔다는 이유만으로 미공개 장면을 고르지 않는다. 한 장의 프로필만 고정한 구현도 아니다.
+
+이미지가 늦게 오거나 표시되지 않아도 조사 텍스트와 서버의 진행 조건은 유지된다. UI의 드래그 좌표는 레버 조작 의도를 전달하며, 장치의 실제 성공 조건은 서버가 검증한다.
+
+## 한글 글꼴
+
+외부 CDN 없이 읽을 수 있도록 public/assets/css에 NanumGothic.ttf, NanumGothicBold.ttf, FONT_LICENSE.txt를 포함했다. Google Fonts의 Nanum Gothic 원본 파일과 SIL Open Font License를 사용했다.
+
+출처: https://github.com/google/fonts/tree/main/ofl/nanumgothic
+
+초기 검수에서 일부 배포본 폰트의 0바이트 TSI3 테이블을 Chromium이 거부하는 문제가 확인되어, 공식 배포 파일로 교체하고 실제 로딩을 다시 확인했다.
+
+신문 자료 사진의 생성 지침: “Close side view of an old passenger train at night, only carriage body and windows. Reference railway illustration style. Faded monochrome sepia and photographic grain. Blank identification plate; the exact known train number is added in HTML. No station signs, recognizable station, landscape clues, people, extra objects, lettering or new events.” 번호 13-Fri는 원문의 단서이며 코드로 정확하게 겹쳐 표시한다.
+
+
+## v1.1 추가 자산과 생성 지침
+
+기본 참조는 v1.0의 scene_01과 portrait_01~05다. 내장 이미지 생성 도구로 원본의 세피아·먹선·낡은 목재·녹색 좌석·호박빛 조명과 인물 정체성을 유지했다. 모든 최종 자산은 기존 public/assets/images 폴더에 복사했다. 런타임 이미지 API나 추가 키는 사용하지 않는다.
+
+| 파일 | 역할 | 최종 프롬프트의 요청과 보존 조건 |
+| --- | --- | --- |
+| scene_05.png | 2호차 | 참조와 같은 열차, 왼쪽 긴 녹색 벤치·오른쪽 좁은 좌석, 중앙 통로. 탐험가를 합성할 좌석 여백. 인물·새 단서·글자 없음 |
+| scene_06.png | 3호차 | 같은 화풍, 꺼진 전등, 창가 좌석·테이블·커피 자국·오른쪽 청소 도구. 노인과 청소원 합성 위치. 희미한 밤빛이며 전등 복구 없음 |
+| scene_07.png | 4호차 닫힌 문 | 밝은 전등, 왼쪽 빈 좌석과 승무원 위치, 오른쪽 큰 승무원실 문·빨간 카드 인식기·오른쪽 하단 닫힌 점검 덮개. 중앙 앞쪽 통로. 노란 레버 미노출 |
+| scene_08.png | 4호차 열린 문 | scene_07의 문 부분만 안쪽으로 열고 scene_02의 책상·서류 보관함이 일부 보이도록 제작. 다른 가구·카메라·조명·목재와 하드웨어 유지 |
+| portrait_06.png | 탐험가의 유쾌한 설명 | portrait_01 정체성·옷·배낭·붕대·앉은 자세 유지, 웃는 얼굴과 손짓만 변경. 걷거나 새 소품을 들지 않음 |
+| portrait_07.png | 노인의 반환 후 안도 | portrait_02 얼굴·백발·갈색 외투·지팡이·앉은 자세 유지, 감사하는 미소만 변경 |
+| portrait_08.png | 청소원의 외형 확인 질문 | portrait_03 얼굴·작업복·청소 벨트 유지, 손바닥을 펴서 묻는 자세와 표정. 새 승차권 소품 없음 |
+| portrait_09.png | 승무원의 출입 제지 | portrait_04 얼굴·모자·검정 조끼·리본·복장 유지, 차분한 정지 손짓과 단호한 표정 |
+| portrait_10.png | 기관사의 연도 인정 | portrait_05 얼굴·모자·금색 장식 제복 유지, 놀라 인정하는 눈빛과 손짓. 새 문서·숫자 없음 |
+
+생성 규격은 배경 1536×1024, 인물 1024×1536, 인물은 실제 알파 투명 PNG다. 생성 결과의 색감·인물·주요 가구와 연결을 눈으로 확인하고 적용했다. 기본 배경 7장+문 상태 변형 1장, 기본 인물 5장+표정 변형 5장, 신문 자료 사진 1장으로 게임용 이미지 19장이다. 원본 로고 1장은 그대로 보존한다.
+
+정확한 문서 내용·연도·암호·안내문은 생성 이미지에 맡기지 않고 HTML 텍스트로 표시한다. 흰 열차 로딩 로고·안내서 도식·점검 장치·제어판·아이템 도상은 작은 코드 기반 SVG/HTML/CSS로 그려 정확한 조작 위치와 내용을 유지한다. 이 도식은 새 단서나 아이템이 아니다.

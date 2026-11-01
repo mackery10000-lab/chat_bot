@@ -1,3 +1,5 @@
-Flask>=3.1.3,<4
-python-dotenv>=1.2.4,<2
-gunicorn>=26.2,<27; platform_system != "Windows"
+Flask==3.1.3
+python-dotenv==1.2.4
+openai==2.54.0
+httpx[socks]==0.28.1
+gunicorn==26.2.0; platform_system != "Windows"

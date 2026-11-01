@@ -4,7 +4,7 @@
 
 ## 1. 배포 전 확인
 
-- 로컬에서 화면과 `/api/chat` 응답을 확인합니다. 제공된 데모는 모델을 호출하지 않습니다.
+- 로컬에서 화면과 `/api/chat` 응답을 확인합니다. 현재 환경 연결판은 기존 모델을 호출합니다.
 - `python -m unittest discover -s tests -v`를 실행합니다.
 - GitHub 저장소에 배포할 브랜치를 push하고, Render가 그 저장소에 접근할 수 있는지 확인합니다.
 - 실제 모델을 연결했다면 필요한 비밀 환경 변수를 확인합니다. OpenAI API 키는 운영진이 제공합니다.
@@ -47,10 +47,9 @@
 | Key | Value |
 | --- | --- |
 | `OPENAI_API_KEY` | 운영진이 제공한 API 키 |
-| `OPENAI_MODEL` | `gpt-6-luna` |
-| `OPENAI_REASONING_EFFORT` | `none` |
+| `OPENAI_MODEL` | `gpt-4o-mini` |
 
-데모를 그대로 배포할 때는 API 키가 필요하지 않습니다. `PORT`는 Render가 서비스 실행 환경에 제공하므로 직접 고정하지 말고 앱이 환경 변수 값을 사용하도록 둡니다. 비밀 값은 README·저장소·빌드 명령에 적지 마세요. [Render 환경 변수 설정](https://render.com/docs/configure-environment-variables)
+실제 모델 대화에는 API 키가 필요합니다. 원본 파일은 Git에 넣지 않고 플랫폼의 비밀 환경 변수로 전달합니다. `PORT`는 Render가 서비스 실행 환경에 제공하므로 직접 고정하지 말고 앱이 환경 변수 값을 사용하도록 둡니다. 비밀 값은 README·저장소·빌드 명령에 적지 마세요. [Render 환경 변수 설정](https://render.com/docs/configure-environment-variables)
 
 ## 4. 배포하고 접속하기
 
