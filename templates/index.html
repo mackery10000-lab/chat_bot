@@ -1,20 +1,15 @@
 <!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ bot.name }} - 캐릭터 챗봇</title>
-    <link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}">
-  </head>
-  <body class="landing-page">
-    <main class="landing-card">
-      <header class="landing-header">
-        <h1>캐릭터 챗봇</h1>
-      </header>
-      <div class="landing-content">
-        <img class="brand-image" src="{{ asset_url('assets/images/hateslop-logo.png') }}" alt="hateSlop 로고">
-        <a class="start-button" href="{{ url_for('detail') }}">시작하기</a>
-      </div>
-    </main>
-  </body>
-</html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ bot.name }}</title><link rel="icon" href="data:,"><link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}"><script src="{{ asset_url('assets/js/chatbot.js') }}" defer></script></head>
+<body class="landing-page">
+<div class="landing-backdrop" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+<main class="landing-content">
+  <div class="rail-mark" aria-hidden="true">13-Fri</div>
+  <p class="eyebrow">A TRAIN THAT NEVER ARRIVES</p>
+  <h1>종착역이 없는<br><span>열차</span></h1>
+  <p class="landing-line">분명, 조금 전에도 이곳을 지나쳤다.</p>
+  <div class="title-rule" aria-hidden="true"><span>◆</span></div>
+  <a class="brass-button large" href="{{ url_for('detail') }}">열차에 오르기 <span aria-hidden="true">→</span></a>
+  <a class="continue-link" href="{{ url_for('chat') }}">이어서 조사하기</a>
+  <p class="landing-foot">대화하고, 기록하고, 돌아갈 길을 찾으세요.</p>
+</main><span class="corner corner-tl" aria-hidden="true"></span><span class="corner corner-br" aria-hidden="true"></span>
+<div id="scene-loading" class="scene-loading" role="status" aria-live="polite" aria-label="장면 로딩" hidden><div class="loading-center"><svg class="loading-train" viewBox="0 0 140 60" aria-hidden="true"><g class="train-body"><path d="M17 39V20h48v19zM21 20V12h35l9 8M73 20h37l13 19H73zM24 26h10v7H24zM41 26h10v7H41zM81 25h13v8H81zM101 25h7l6 8h-13M12 39h116"/><circle cx="29" cy="44" r="6"/><circle cx="54" cy="44" r="6"/><circle cx="84" cy="44" r="6"/><circle cx="113" cy="44" r="6"/></g><path class="loading-rail" d="M4 55h132M5 9h16M0 18h10M0 30h8"/></svg><span>로딩</span></div></div></body></html>

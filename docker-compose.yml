@@ -7,9 +7,9 @@ services:
       PORT: "5000"
       FLASK_DEBUG: "1"
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-luna}
-      OPENAI_REASONING_EFFORT: ${OPENAI_REASONING_EFFORT:-none}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
     volumes:
+      - train_state:/app/data
       - ./app.py:/app/app.py:ro
       - ./services:/app/services:ro
       - ./config:/app/config:ro
@@ -19,3 +19,6 @@ services:
       - ./data/images:/app/data/images:ro
       - ./tests:/app/tests:ro
     command: python app.py
+
+volumes:
+  train_state:

@@ -16,3 +16,7 @@ reference-4/
 BASELINE_REVIEW.md
 IMPLEMENTATION_PLAN.md
 CHANGE_REPORT.md
+
+# SQLite 실행 중 보조 파일
+*.sqlite3-wal
+*.sqlite3-shm

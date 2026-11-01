@@ -1,33 +1,6 @@
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ bot.name }} - 소개</title>
-    <link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}">
-  </head>
-  <body class="detail-page">
-    <main class="modal-container">
-      <header class="modal-header">
-        <h1>{{ bot.name }}</h1>
-        <a class="close-button" href="{{ url_for('index') }}" aria-label="처음으로 돌아가기">&times;</a>
-      </header>
-      <div class="modal-content">
-        <img class="bot-image" src="{{ bot.image }}" alt="{{ bot.name }} 대표 이미지">
-        <p class="bot-description">{{ bot.description }}</p>
-        {% if bot.tags %}
-        <ul class="tags" aria-label="캐릭터 태그">
-          {% for tag in bot.tags %}<li>{{ tag }}</li>{% endfor %}
-        </ul>
-        {% endif %}
-        <form class="start-form" action="{{ url_for('chat') }}" method="get">
-          <div class="username-area">
-            <label for="username">이름:</label>
-            <input id="username" name="username" type="text" maxlength="50" placeholder="이름을 입력하세요" autocomplete="nickname">
-          </div>
-          <button class="start-chat" type="submit">채팅 시작하기</button>
-        </form>
-      </div>
-    </main>
-  </body>
-</html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ bot.name }} · 탑승 안내</title><link rel="icon" href="data:,"><link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}"><script src="{{ asset_url('assets/js/chatbot.js') }}" defer></script></head>
+<body class="detail-page"><div class="landing-backdrop" aria-hidden="true"></div>
+<main class="ticket-intro"><a class="back-link" href="{{ url_for('index') }}">← 처음으로</a><p class="eyebrow">BOARDING GUIDE · 13-Fri</p><h1>눈을 뜨면,<br>다시 같은 풍경.</h1><p class="intro-description">{{ bot.description }}</p>
+<div class="guide-lines"><p><b>직접 말을 걸어보세요.</b> 질문, 조사, 이동을 채팅으로 요청할 수 있습니다.</p><p><b>가진 것을 살펴보세요.</b> 보관함과 조사 기록은 직접 열어 확인합니다.</p><p><b>마지막 선택은 신중하게.</b> 중요한 제출과 조작은 화면에서 한 번 더 확인합니다.</p></div>
+<form action="{{ url_for('chat') }}" method="get" class="boarding-form"><input type="hidden" name="new" value="1"><label for="username">탑승자 이름</label><input id="username" name="username" maxlength="50" placeholder="이름을 입력하세요" autocomplete="nickname"><button class="ink-button" type="submit">새로운 조사 시작 <span aria-hidden="true">→</span></button></form>
+<p class="small-note">같은 브라우저에서 진행을 이어갈 수 있습니다. 새로운 조사를 시작하면 새 기록을 사용합니다.</p></main><div id="scene-loading" class="scene-loading" role="status" aria-live="polite" aria-label="장면 로딩" hidden><div class="loading-center"><svg class="loading-train" viewBox="0 0 140 60" aria-hidden="true"><g class="train-body"><path d="M17 39V20h48v19zM21 20V12h35l9 8M73 20h37l13 19H73zM24 26h10v7H24zM41 26h10v7H41zM81 25h13v8H81zM101 25h7l6 8h-13M12 39h116"/><circle cx="29" cy="44" r="6"/><circle cx="54" cy="44" r="6"/><circle cx="84" cy="44" r="6"/><circle cx="113" cy="44" r="6"/></g><path class="loading-rail" d="M4 55h132M5 9h16M0 18h10M0 30h8"/></svg><span>로딩</span></div></div></body></html>
