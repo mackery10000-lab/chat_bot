@@ -1039,6 +1039,23 @@ class SmokeTest(GameTestCase):
                 self.assertEqual(sample, original)
                 self.assertTrue(result["ui"].get("non_progress") or result["ui"].get("window_video"))
 
+    def test_suggested_questions_are_offered_once_then_end_talk(self):
+        state = self.service.store.get(self.client.get_cookie(web.COOKIE).value)
+        sample = deepcopy(state)
+        sample.update(location="engine", npc="driver")
+        engine = self.service.engine
+        asked = []
+        with patch.object(engine, "_scenario_options", return_value=[]):
+            while (choices := engine.choices(sample))[0]["id"] != "end_talk":
+                self.assertFalse(any(c["id"] in asked for c in choices))
+                asked.append(choices[0]["id"])
+                engine.choose(sample, choices[0]["id"])
+            self.assertEqual(len(asked), 4)
+            self.assertEqual(choices, [{"id": "end_talk", "label": "대화를 마친다.", "kind": "interaction",
+                                        "action": {"type": "end_talk"}}])
+            sample["npc"] = ""
+            self.assertNotEqual(engine.choices(sample)[0]["id"], "end_talk")
+
     def test_window_video_is_only_available_in_car_one(self):
         self.a("inspect", "window")
         self.assertTrue(self.data["ui"]["window_video"])

@@ -1366,9 +1366,9 @@ class GameEngine:
                     ("greet", "기관사에게 가볍게 인사한다.", "기관사는 짧게 고개를 끄덕인다. 오래 움직이지 않은 어깨에는 힘이 들어가 있다."),
                 ],
             }[npc]
+            # Each suggested question is offered once; choices() then offers ending the talk.
             seen = s.get("interaction_seen", {}).get(npc, [])
-            rows = ([row for row in rows if row[0] not in seen]
-                    + [row for row in rows if row[0] in seen])[:2]
+            rows = [row for row in rows if row[0] not in seen][:2]
         else:
             rows = {
                 "car_1": [
@@ -1407,7 +1407,12 @@ class GameEngine:
                 "action": {"type": "choose", "target": key}}
 
     def choices(self, s):
-        return [self._public_choice(s, option) for option in self._interaction_options(s)]
+        options = [self._public_choice(s, option) for option in self._interaction_options(s)]
+        if (not options and s["npc"] and s["status"] == "playing"
+                and not s["confirmation"] and not s["flags"].get("route_open")):
+            return [{"id": "end_talk", "label": "대화를 마친다.", "kind": "interaction",
+                     "action": {"type": "end_talk"}}]
+        return options
 
     def choose(self, s, target):
         if target.startswith("hint."):
