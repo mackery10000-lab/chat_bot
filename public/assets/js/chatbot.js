@@ -119,8 +119,21 @@ function updateDialogue(data, interaction, previous) {
   $('speaker-name').textContent=speaker;
   // '차내' is narration (wrapped in parentheses); any other speaker is spoken dialogue.
   $('dialogue-box').classList.toggle('narration',speaker==='차내');
-  $('dialogue-text').textContent=reply;$('dialogue-text').scrollTop=0;
+  $('dialogue-text').replaceChildren(...(speaker==='차내'?[reply]:dialogueParts(reply)));$('dialogue-text').scrollTop=0;
   setDialogueVisible(true);
+}
+// A character line may mix narration with quoted speech: “…” is spoken, the rest is narration.
+// Lines without quotes are spoken as a whole.
+function dialogueParts(text) {
+  if(!text.includes('“'))return [node('span','dialogue-speech',text)];
+  return text.split(/(“[^”]*(?:”|$))/).filter(Boolean).map(part=>{
+    if(part.startsWith('“'))return node('span','dialogue-speech',part);
+    if(!part.trim())return part;
+    const [,lead,body,trail]=part.match(/^(\s*)([\s\S]*?)(\s*)$/);
+    const aside=document.createDocumentFragment();
+    aside.append(lead,node('span','dialogue-aside',body),trail);
+    return aside;
+  });
 }
 function renderGuidance(data, interaction) {
   const candidate=data.ui?.hint_choice;

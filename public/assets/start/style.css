@@ -1,6 +1,20 @@
 /* =========================================
-   종착지 없는 열차 · 시작 화면
+   운행 종료 불가 · 시작 화면
    ========================================= */
+
+/* 간판·제목 글꼴 (오프라인이면 아래 대체 글꼴로 보임) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Song+Myung&family=DotGothic16&display=swap');
+
+/* 간판 제목 "운행 종료 불가" 글꼴 */
+@font-face {
+    font-family: 'Stella';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2608201622@stellar-serif/stellar-serif/Stellar_Serif_Bold_Condensed.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+    font-stretch: 75%;
+}
+
+/* 장체: font-family: 'Stella'; font-stretch: 75%; */
 
 @font-face {
   font-family: 'OgRenaissanceSecret';
@@ -353,19 +367,35 @@ body {
   color: #B09254;
 }
 
-/* 간판 제목 "종착지 없는 열차" */
+/* 간판 제목 "운행 종료 불가" */
 .sign__title {
   margin: 0;
-  padding-left: 0.08em;
-  font: 700 clamp(28px, 5vw, 46px)/1.2 var(--font-title);
-  letter-spacing: 0.08em;
+  padding-left: 0.16em;
+  font: 400 clamp(28px, 8vw, 76px)/1.15 'Stella', var(--font-serif-ko);
+  font-stretch: 75%;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
   color: #120808;
   text-shadow: 0 1px 0 rgba(232, 203, 132, 0.35), 0 0 14px rgba(0, 0, 0, 0.35);
 }
-/* 두 줄 제목: THE TRAIN WITH / NO TERMINUS */
 .sign__title-line { display: block; }
 
-/* 간판 안 "TERMINUS": 흔들림 없이 한 덩어리씩 사라지는 효과만 */
+/* 영어 부제 "NO LAST STOP": 양옆 금색 선 */
+.sign__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font: 600 clamp(12px, 1.8vw, 16px) var(--font-serif-en);
+  letter-spacing: clamp(0.2em, 1vw, 0.42em);
+  white-space: nowrap;
+  color: #B09254;
+}
+.sign__subtitle::before,
+.sign__subtitle::after { content: ""; width: clamp(16px, 6vw, 72px); height: 1px; background: currentColor; }
+.sign__subtitle::after { margin-left: calc(-1 * clamp(0.2em, 1vw, 0.42em)); }
+
+/* 간판 안 "불가": 흔들림 없이 한 글자씩 사라지는 효과만 */
 .sign__title .title__shake { animation: none; }
 
 /* 유령 글자: 연한 회색, 한 글자씩 흐려지며 사라졌다 돌아옴 */
