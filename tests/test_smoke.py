@@ -1049,7 +1049,10 @@ class SmokeTest(GameTestCase):
             while (choices := engine.choices(sample))[0]["id"] != "end_talk":
                 self.assertFalse(any(c["id"] in asked for c in choices))
                 asked.append(choices[0]["id"])
-                engine.choose(sample, choices[0]["id"])
+                result = engine.choose(sample, choices[0]["id"])
+                # Quoted rows are the driver speaking; unquoted rows are narration.
+                self.assertEqual(result["npc"], "driver" if "“" in result["canonical"] else "")
+            self.assertEqual(sample["npc"], "driver")
             self.assertEqual(len(asked), 4)
             self.assertEqual(choices, [{"id": "end_talk", "label": "대화를 마친다.", "kind": "interaction",
                                         "action": {"type": "end_talk"}}])

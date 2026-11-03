@@ -1435,7 +1435,9 @@ class GameEngine:
             seen = s.setdefault("interaction_seen", {}).setdefault(s["npc"], [])
             if option["id"] not in seen:
                 seen.append(option["id"])
-        return self.result(option["text"], s["npc"], ui={"non_progress": True})
+        # Unquoted rows describe the scene, so they are narrated ('차내') rather than spoken.
+        speaker = s["npc"] if "“" in option["text"] else ""
+        return self.result(option["text"], speaker, ui={"non_progress": True})
 
     def _dispatch_choice(self, s, dispatch):
         kind = dispatch["type"]
