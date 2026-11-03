@@ -24,7 +24,7 @@ class DemoImageSelector:
         sizes["platform"] = [3, 2]
         dark = location == "car_3" and not flags.get("light_on")
         people = []
-        placements = {"explorer": [8, 20, 39, 80], "elder": [7, 17, 40, 83], "cleaner": [60, 11, 34, 89], "attendant": [-3, 8, 40, 92], "driver": [13, 16, 34, 84]}
+        placements = {"explorer": [8, 20, 39, 80], "elder": [7, 17, 40, 83], "cleaner": [60, 11, 34, 89], "attendant": [-6, 4, 48, 106], "driver": [13, 16, 34, 84]}
         if not dark and state["status"] == "playing" and not flags.get("route_open"):
             for npc_id, npc in config["npcs"].items():
                 if npc["location"] != location:
