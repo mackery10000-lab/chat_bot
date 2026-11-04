@@ -369,16 +369,11 @@ body {
 
 /* 간판 제목 "운행 종료 불가" */
 .sign__title {
+  width: min(100%, 265px);
   margin: 0;
-  padding-left: 0.16em;
-  font: 400 clamp(28px, 8vw, 76px)/1.15 'Stella', var(--font-serif-ko);
-  font-stretch: 75%;
-  letter-spacing: 0.16em;
-  white-space: nowrap;
-  color: #120808;
-  text-shadow: 0 1px 0 rgba(232, 203, 132, 0.35), 0 0 14px rgba(0, 0, 0, 0.35);
+  line-height: 0;
 }
-.sign__title-line { display: block; }
+.sign__title-logo { display: block; width: 100%; height: auto; }
 
 /* 영어 부제 "NO LAST STOP": 양옆 금색 선 */
 .sign__subtitle {
@@ -394,9 +389,6 @@ body {
 .sign__subtitle::before,
 .sign__subtitle::after { content: ""; width: clamp(16px, 6vw, 72px); height: 1px; background: currentColor; }
 .sign__subtitle::after { margin-left: calc(-1 * clamp(0.2em, 1vw, 0.42em)); }
-
-/* 간판 안 "불가": 흔들림 없이 한 글자씩 사라지는 효과만 */
-.sign__title .title__shake { animation: none; }
 
 /* 유령 글자: 연한 회색, 한 글자씩 흐려지며 사라졌다 돌아옴 */
 .ghost {
