@@ -1,0 +1,478 @@
+{
+  "explorer": {
+    "entry": {
+      "speech": "다친 발목을 쉬게 하던 젊은 남성이 반갑게 웃는다. “저는 이 열차를 조사하러 온 탐험가예요. 이런 곳에서 마주치니 재미있잖아요?”",
+      "choices": [
+        {
+          "id": "why",
+          "label": "여기에 왜 있어요?",
+          "next": "answer",
+          "response": "저는 궁금해서 직접 타봤는데요? 당신은 여기에 왜 있죠?"
+        },
+        {
+          "id": "where",
+          "label": "여기가 어디예요?",
+          "next": "answer",
+          "response": "13-Fri 열차 안이죠. 직접 타보니 더 흥미로운 곳인데요? 당신은 여기에 왜 있죠?"
+        }
+      ]
+    },
+    "answer": {
+      "choices": [
+        {
+          "id": "stranded",
+          "label": "열차에 탔는데 내리지를 못했어요.",
+          "next": "newspaper",
+          "response": "이 미스터리 한가운데서 만나다니, 흥미롭잖아요?\n저는 탐험가예요. 2016년 23시 59분에 출발한 13-Fri가 사라진 사건을 오래 조사했어요. 그런데 2026년에 같은 시각에 떠나는 열차가 다시 나타났다지 뭐예요. 순전히 궁금해서 타봤어요.\n이 신문을 보시겠어요?",
+          "effect": {
+            "type": "introduce"
+          }
+        }
+      ]
+    },
+    "newspaper": {
+      "choices": [
+        {
+          "id": "read_news",
+          "label": "신문을 본다.",
+          "next": "oddity",
+          "response": "근데 한 가지 이상한 점이 있어요.",
+          "effect": {
+            "type": "read_item",
+            "target": "newspaper"
+          }
+        }
+      ]
+    },
+    "oddity": {
+      "choices": [
+        {
+          "id": "what",
+          "label": "그게 뭔데요?",
+          "next": "same_train",
+          "response": "이 열차도 13-Fri라는 거예요."
+        }
+      ]
+    },
+    "same_train": {
+      "choices": [
+        {
+          "id": "same",
+          "label": "그러면 이 열차가 10년 전의 열차라고 생각하시는 거예요?",
+          "next": "evidence",
+          "response": "네. 하지만 추측일 뿐이죠. 출발 시각도 같고, 열차 번호까지 일치하니까요. 하지만 결정적인 증거가 없어요.\n제가 조사한 결과 마치 누군가 의도적으로 지워놓은 것처럼 도착해야 할 장소 이름은 어디에도 남아 있지 않았어요."
+        }
+      ]
+    },
+    "evidence": {
+      "choices": [
+        {
+          "id": "proof",
+          "label": "어떤 증거가 필요해요?",
+          "next": "more",
+          "response": "당시 발급된 물건이나 기록이 남아 있으면 좋겠는데… 이 열차가 진짜 10년 전의 열차라면 열차 안에 단서가 있을 수도 있겠네요."
+        }
+      ]
+    },
+    "more": {
+      "choices": [
+        {
+          "id": "more",
+          "label": "또 알고 있는 게 있나요?",
+          "next": "plans",
+          "response": "철교와 터널이 나타난 장소와 시간을 수첩에 적어뒀어요. 몇 번을 대조해도 같은 구간이라니까요. 분명 앞으로 가는데 계속 같은 곳으로 돌아오는 거예요. 다른 승객들에게 알렸지만 이상한 사람 취급만 받았네요. 이제 뭘 해보실 생각인데요?"
+        }
+      ]
+    },
+    "plans": {
+      "choices": [
+        {
+          "id": "investigate",
+          "label": "다른 칸으로 넘어가려고요.",
+          "next": "done",
+          "response": "저도 기관사를 만나러 가려 했는데, 낡은 바닥이 무너져 발목을 다쳤어요. 지금은 걷기가 어렵네요.\n대신 제가 조사할 때 쓰던 손전등과 구형 시설 안내서를 가져가세요. 기관실을 한번 살펴봐 주시겠어요? 제가 못 찾은 걸 당신이라면 찾을지도 모르잖아요?",
+          "effect": {
+            "type": "talk",
+            "topic": "departure"
+          }
+        }
+      ]
+    }
+  },
+  "elder": {
+    "entry": {
+      "speech": "아이고, 갑자기 불이 켜져서 놀랐네. 반갑소. 자네는 어디로 가는 길이고?",
+      "choices": [
+        {
+          "id": "okay",
+          "label": "괜찮으세요?",
+          "next": "search",
+          "response": "아이고, 걱정해 줘서 고맙소. 괜찮긴 한데… 아까부터 뭔가를 찾고 있었지. 그런데 불까지 꺼져 버렸지 뭔가."
+        },
+        {
+          "id": "doing",
+          "label": "여기서 뭘 하고 계세요?",
+          "next": "search",
+          "response": "아이고, 아까부터 뭔가를 찾고 있었지. 그런데 불까지 꺼져 버렸지 뭔가. 천천히 생각해 보려는데 영 떠오르질 않네."
+        }
+      ]
+    },
+    "search": {
+      "choices": [
+        {
+          "id": "lost",
+          "label": "뭘 찾고 계신데요?",
+          "next": "last_seen",
+          "response": "아이고, 내 승차권을 잃어버렸네. 아직 승무원이 검사를 안 했는데, 꼭 찾아야 하거든."
+        }
+      ]
+    },
+    "last_seen": {
+      "choices": [
+        {
+          "id": "where",
+          "label": "어디서 잃어버리셨나요?",
+          "next": "nearby",
+          "response": "아이고, 글쎄… 창가에서 커피를 마시다가 쏟았지. 그다음부터는 영 기억이 안 나는구먼."
+        },
+        {
+          "id": "when",
+          "label": "마지막으로 본 게 언제예요?",
+          "next": "nearby",
+          "response": "아이고, 글쎄… 창가에서 커피를 마시다가 쏟았지. 그다음부터는 영 기억이 안 나는구먼."
+        }
+      ]
+    },
+    "nearby": {
+      "choices": [
+        {
+          "id": "who",
+          "label": "그때 주변에 누가 있었나요?",
+          "next": "appearance",
+          "response": "아이고, 청소하는 사람이 도와줬던 것 같은데… 그 사람한테 한번 물어봐 주겠소?"
+        }
+      ]
+    },
+    "appearance": {
+      "choices": [
+        {
+          "id": "appearance",
+          "label": "승차권은 어떻게 생겼나요?",
+          "next": "waiting",
+          "response": "아이고, 누렇게 바랜 종이에 구멍이 뚫려 있었지.",
+          "effect": {
+            "type": "talk",
+            "topic": "appearance"
+          }
+        }
+      ]
+    },
+    "waiting": {
+      "choices": [
+        {
+          "id": "continue",
+          "label": "노인이랑 계속 대화한다.",
+          "next": "waiting",
+          "response": "아이고, 궁금한 게 있으면 물어보소. 부산이 내 고향 아이가. 무슨 일로 가던 길이었는지는 영 기억이 안 나네."
+        },
+        {
+          "id": "cleaner",
+          "label": "청소 직원이랑 대화한다.",
+          "next": "waiting",
+          "response": null,
+          "effect": {
+            "type": "select_npc",
+            "target": "cleaner"
+          }
+        }
+      ]
+    },
+    "destination": {
+      "choices": [
+        {
+          "id": "destination",
+          "label": "하차역 이름이 기억나세요?",
+          "next": "done",
+          "response": "아이고, 이름이 기억이 잘… 무슨 “산”이었는데… 그곳이 삶과 죽음의 경계라고 해서 이름이 그렇게 지어졌다네.",
+          "effect": {
+            "type": "talk",
+            "topic": "destination"
+          }
+        }
+      ]
+    },
+    "read_ticket": {
+      "choices": [
+        {
+          "id": "read",
+          "label": "찾은 승차권을 확인한다.",
+          "next": "return_ticket",
+          "response": "돌려드리기 전에 승차권에 적힌 내용을 확인한다.",
+          "effect": {
+            "type": "read_item",
+            "target": "ticket_old"
+          }
+        }
+      ]
+    },
+    "return_ticket": {
+      "choices": [
+        {
+          "id": "return",
+          "label": "찾은 승차권을 돌려드린다.",
+          "next": "destination",
+          "response": "아이고, 내 승차권을 찾았구먼. 고맙소. 이제야 마음이 좀 놓이는구먼.",
+          "effect": {
+            "type": "present",
+            "target": "ticket_old",
+            "recipient": "elder"
+          }
+        }
+      ]
+    }
+  },
+  "cleaner": {
+    "entry": {
+      "speech": "아이고, 손님. 무슨 일이세요? 어르신이 쏟으신 커피를 닦고 있답니다. 바닥이 젖었으니 조금만 조심해 주시겠어요?",
+      "choices": [
+        {
+          "id": "ticket",
+          "label": "혹시 승차권을 보셨나요?",
+          "next": "describe",
+          "response": "분실물을 찾으시는구먼요. 잠시만 기다려 주시겠어요? 잃어버린 물건의 모양을 명확히 설명해 주시면 찾아드리겠습니다.",
+          "effect": {
+            "type": "talk",
+            "topic": "lost_ticket"
+          }
+        }
+      ]
+    },
+    "describe": {
+      "choices": [
+        {
+          "id": "describe",
+          "label": "분실물의 모양을 직접 설명한다.",
+          "next": "describe",
+          "response": "청소원이 당신의 설명을 기다린다.",
+          "effect": {
+            "type": "compose"
+          }
+        },
+        {
+          "id": "elder",
+          "label": "노인에게 다시 물어본다.",
+          "next": "describe",
+          "response": null,
+          "effect": {
+            "type": "select_npc",
+            "target": "elder"
+          }
+        }
+      ]
+    },
+    "found": {
+      "choices": [
+        {
+          "id": "read",
+          "label": "승차권을 본다.",
+          "next": "return",
+          "response": "하차역의 글자는 알아볼 수 없을 정도로 훼손되어 있다.",
+          "effect": {
+            "type": "read_item",
+            "target": "ticket_old"
+          }
+        }
+      ]
+    },
+    "return": {
+      "choices": [
+        {
+          "id": "return",
+          "label": "노인이랑 다시 대화한다.",
+          "next": "return",
+          "response": null,
+          "effect": {
+            "type": "select_npc",
+            "target": "elder"
+          }
+        }
+      ]
+    }
+  },
+  "attendant": {
+    "entry": {
+      "speech": "아, 지금은 안 됩니다. 위험합니다. 좌석으로 돌아가 앉으십시오.",
+      "choices": [
+        {
+          "id": "danger",
+          "label": "왜 위험하죠?",
+          "next": "where",
+          "response": "달리는 중에는 통로가 위험합니다. 제가 안내드리고 있지 않습니까. 필요한 도움이 무엇입니까?"
+        }
+      ]
+    },
+    "where": {
+      "choices": [
+        {
+          "id": "where",
+          "label": "기관실은 어디 있나요?",
+          "next": "stop",
+          "response": "기관실은 앞쪽입니다. 승무원 전용 공간이므로 승객은 지나갈 수 없습니다."
+        }
+      ]
+    },
+    "stop": {
+      "choices": [
+        {
+          "id": "stop",
+          "label": "이 차를 멈춰야 합니다.",
+          "next": "anomaly",
+          "response": "당신도 이 열차의 이상 현상을 알고 있습니까?"
+        }
+      ]
+    },
+    "anomaly": {
+      "choices": [
+        {
+          "id": "yes",
+          "label": "네.",
+          "next": "need",
+          "response": "역시 저만 이상하게 느낀 것이 아니었군요. 운행 시간이 한참 지났습니다. 시간표를 확인해도 제 시계는 계속 23시 59분입니다.",
+          "effect": {
+            "type": "anomaly"
+          }
+        }
+      ]
+    },
+    "need": {
+      "choices": [
+        {
+          "id": "engine",
+          "label": "그래서 기관실에 가봐야겠어요.",
+          "next": "persuade",
+          "response": "하지만 규정상 승객을 기관실에 들여보낼 수는 없습니다."
+        }
+      ]
+    },
+    "persuade": {
+      "choices": [
+        {
+          "id": "rules",
+          "label": "지금 규정이 중요한 상황인가요?",
+          "next": "favor",
+          "response": "…좋습니다. 대신 한 가지 부탁을 들어주십시오."
+        }
+      ]
+    },
+    "favor": {
+      "choices": [
+        {
+          "id": "favor",
+          "label": "무슨 부탁이죠?",
+          "next": "accept",
+          "response": "서류를 제가 갖고 있는 것은 아닙니다. 승무원실에 운행 관련 서류가 보관되어 있지만 출입문 잠금장치가 고장 나 들어갈 수 없습니다.\n문을 열고 서류를 확인해 주시면 기관실로 가실 수 있도록 돕겠습니다.",
+          "effect": {
+            "type": "offer"
+          }
+        }
+      ]
+    },
+    "accept": {
+      "choices": [
+        {
+          "id": "accept",
+          "label": "좋아요.",
+          "next": "done",
+          "response": "감사합니다. 승무원실 문을 열어 운행 서류를 확인해 주세요.",
+          "effect": {
+            "type": "talk",
+            "topic": "help",
+            "accept": true
+          }
+        }
+      ]
+    },
+    "report": {
+      "choices": [
+        {
+          "id": "report",
+          "label": "운행 관련 서류를 가져왔어요.",
+          "next": "done",
+          "response": "정말 문을 여셨군요. 감사합니다. 약속대로 기관실로 가실 수 있게 해드리겠습니다.",
+          "effect": {
+            "type": "present",
+            "target": "route_report",
+            "recipient": "attendant"
+          }
+        }
+      ]
+    }
+  },
+  "driver": {
+    "entry": {
+      "speech": "여기 들어오시면 안 됩니다.",
+      "choices": [
+        {
+          "id": "stop",
+          "label": "당장 멈추세요.",
+          "next": "destination",
+          "response": "반복 현상은 이미 알고 있습니다. 제동과 운행 경로 확인도 시도했습니다. 레버를 당기는 것만으로 이 반복에서 벗어나지 못합니다.",
+          "effect": {
+            "type": "talk",
+            "topic": "stop"
+          }
+        }
+      ]
+    },
+    "destination": {
+      "choices": [
+        {
+          "id": "station",
+          "label": "아지산으로 가야 합니다.",
+          "next": "password",
+          "response": "아지산역은 위험 구간입니다. 무작정 향할 수는 없습니다. 그쪽 분기 선로는 잠겨 있으며, 비밀번호를 입력해도 열리지 않았습니다."
+        }
+      ]
+    },
+    "password": {
+      "choices": [
+        {
+          "id": "password",
+          "label": "비밀번호가 뭐죠?",
+          "next": "proof",
+          "response": "현재 연도입니다. 2016을 여러 번 입력했지만 열리지 않았습니다. 이제 입력 기회는 한 번입니다. 판단을 바꾸려면 객관적인 증거가 필요합니다.",
+          "effect": {
+            "type": "talk",
+            "topic": "password"
+          }
+        }
+      ]
+    },
+    "proof": {
+      "choices": [
+        {
+          "id": "evidence",
+          "label": "보관함에서 자료를 살펴본다.",
+          "next": "proof",
+          "response": "현재 연도를 뒷받침할 자료를 직접 골라 보자.",
+          "effect": {
+            "type": "inventory"
+          }
+        }
+      ]
+    },
+    "control": {
+      "choices": [
+        {
+          "id": "input",
+          "label": "마지막 한 번을 직접 입력해 보겠습니다.",
+          "next": "control",
+          "response": "목적지와 네 자리 비밀번호를 직접 입력해 주세요.",
+          "effect": {
+            "type": "control"
+          }
+        }
+      ]
+    }
+  }
+}

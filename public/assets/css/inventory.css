@@ -1,0 +1,133 @@
+/* The book, photo mounts, printed records and action labels are bitmap art.
+   Fixed page compositions scale together; each catalog uses pagination. */
+html:has(.game-dialog[open][data-view='inventory']) {overflow:hidden;scrollbar-gutter:stable}
+.chat-page .game-dialog[data-view='inventory'] {
+  width:min(1080px,96vw,calc(90svh * 1415 / 1112));
+  max-width:96vw;max-height:none;margin:auto;padding:0;border:0;border-radius:0;
+  overflow:visible;background:transparent;box-shadow:none;backdrop-filter:none;
+  color:#352d22;overscroll-behavior:contain;
+}
+.chat-page .game-dialog[data-view='inventory'][data-inventory-mode='detail'] {
+  width:min(1440px,96vw,calc(90svh * 1511 / 761.39));
+}
+.game-dialog[data-view='inventory']::backdrop {background:#080705e6;backdrop-filter:blur(5px)}
+.game-dialog[data-view='inventory'] #overlay-body {padding:0;overflow:visible}
+.game-dialog[data-view='inventory'] .overlay-header {
+  position:absolute;inset:0 0 auto;height:0;min-height:0;padding:0;border:0;
+  background:none;pointer-events:none;z-index:10;
+}
+.game-dialog[data-view='inventory'] .overlay-header>div {
+  position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);
+}
+.game-dialog[data-view='inventory'] .close-button {
+  position:absolute;top:1px;right:1px;width:clamp(27px,3.3vw,42px);height:clamp(27px,3.3vw,42px);
+  min-width:0;min-height:0;padding:0;border:0;border-radius:0;
+  color:#322b21;background:#cfc1a6 url('../images/ui/note-paper.png') center/cover;
+  box-shadow:0 2px 5px #0006;font:30px/1 Georgia,serif;pointer-events:auto;
+}
+.game-dialog[data-view='inventory'] button:focus-visible {outline:2px solid #ecd39d;outline-offset:2px}
+.inventory-item-art,.inventory-object-art {display:block;width:100%;height:100%;object-fit:contain}
+
+.inventory-overview {
+  position:relative;width:100%;aspect-ratio:1415/1112;container-type:inline-size;
+  background:url('../images/inventory/book-overview.png') center/100% 100% no-repeat;
+}
+.inventory-grid {
+  position:absolute;inset:24% 3% 4%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));gap:2% 2%;min-height:0;
+}
+.inventory-card {
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2%;
+  width:100%;height:100%;min-width:0;min-height:0;padding:0;border:0;background:none;box-shadow:none;
+  color:#352d22;font:400 2.2cqw/1.25 var(--font);text-align:center;
+}
+.inventory-card strong {font-weight:400;max-width:100%;text-wrap:balance;overflow-wrap:anywhere}
+.inventory-photo-mount {
+  display:block;position:relative;flex:none;height:78%;aspect-ratio:1200/1290;max-width:100%;
+  padding:0;border:0;background:none;box-shadow:none;
+}
+.inventory-photo-mount>.inventory-item-art {position:absolute;left:20.5%;top:17%;width:62%;height:68%;filter:sepia(.1) drop-shadow(1px 2px 2px #291e1638)}
+.inventory-mount-art {position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;object-fit:fill}
+.inventory-card:is(:hover,:focus-visible) .inventory-photo-mount {filter:brightness(1.08) drop-shadow(0 0 3px #906c3f66)}
+.inventory-card:is(:hover,:focus-visible) strong {color:#7a3027}
+.inventory-empty {grid-column:1/-1;align-self:center;text-align:center;font:18px var(--font)}
+
+.paper-action {
+  display:block;width:100%;min-width:0;padding:0;border:0!important;border-radius:0!important;
+  background:none!important;box-shadow:none!important;line-height:0;cursor:pointer;
+}
+.paper-action>img {display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.paper-action:is(:hover,:focus-visible)>img {filter:brightness(1.22)}
+.paper-action:disabled {cursor:default;opacity:.38}
+.game-dialog[data-view='confirm'] .modal-actions .paper-action {flex:1;max-width:50%;padding:0}
+.inventory-pager {position:absolute;left:28%;right:28%;bottom:1%;height:5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6%;z-index:3}
+.inventory-page-number {font:12px/1 var(--font);white-space:nowrap;color:#594731}
+.inventory-pager .paper-action {height:100%;min-height:24px}
+
+.inventory-detail {position:relative;display:grid;grid-template-columns:27% 73%;width:100%;aspect-ratio:1511/761.39;container-type:inline-size}
+.inventory-catalog {position:relative;display:grid;grid-template-rows:9% 82% 9%;height:94%;min-height:0;margin:3% 4% 3% 0;padding:0;background:none;border:0;box-shadow:none}
+.inventory-back {height:100%;width:96%;margin:auto}
+.chat-page .inventory-catalog .item-list {
+  display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(5,minmax(0,1fr));
+  gap:1%;height:100%;min-height:0;max-height:none;overflow:hidden;padding:0;border:0;background:none;
+}
+.chat-page .inventory-catalog .item-row {
+  display:grid;grid-template-columns:34% minmax(0,1fr);gap:5%;align-items:center;
+  width:100%;height:100%;min-width:0;min-height:0;margin:0;padding:3% 4%;
+  background:#25241fe8 url('../images/inventory/action-paper.png') center/100% 100% no-repeat;
+  border:0;border-radius:0;box-shadow:none;color:#d2c6ac;text-align:left;
+  font:400 1.85cqw/1.28 var(--font);overflow-wrap:anywhere;
+}
+.chat-page .inventory-catalog .item-row.selected {background-color:#6d2923;background-blend-mode:luminosity;color:#f1dfbd;box-shadow:inset 0 0 0 1px #b47f62}
+.chat-page .inventory-catalog .item-row:hover {filter:brightness(1.12)}
+.inventory-list-mount {display:block;width:100%;height:90%;min-height:0;padding:5%;background:#d2c3a4;box-shadow:1px 2px 3px #0006}
+.inventory-catalog>.inventory-pager {position:relative;inset:auto;width:94%;height:100%;margin:auto;gap:5%}
+.inventory-catalog .inventory-page-number {color:#cbb99a;font-size:clamp(9px,1.4cqw,17px)}
+.inventory-spread {position:relative;width:100%;height:100%;min-height:0;min-width:0;padding:0;overflow:hidden;background:url('../images/inventory/book-detail.png') center/100% 100% no-repeat}
+.inventory-object {position:absolute;left:5%;top:10%;width:39%;height:80%;display:block;margin:0;padding:0;min-height:0;min-width:0}
+.inventory-object-art {width:100%;height:100%;max-height:none;filter:drop-shadow(2px 3px 3px #36241455)}
+.chat-page .inventory-spread .book-page {position:absolute;left:50.5%;right:3.7%;top:6%;bottom:6%;min-width:0;min-height:0;padding:0;border:0;background:none;box-shadow:none;overflow:hidden}
+.inventory-record-image {display:block;width:100%;height:100%;object-fit:contain;object-position:left top}
+.book-page[data-action-count='1'] .inventory-record-image {height:84%}
+.book-page[data-action-count='2'] .inventory-record-image {height:70%}
+.inventory-spread .document-actions {position:absolute;inset:auto 0 0;display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin:0;padding:0}
+.inventory-spread .document-actions .paper-action {aspect-ratio:6/1;min-height:24px}
+.inventory-spread .document-actions .danger-action>img {filter:sepia(.1)}
+.inventory-spread .document-actions .danger-action:hover>img {filter:brightness(1.22)}
+
+/* New acquisitions use the same tangible paper and taped mount as the book. */
+.chat-page .acquisition-notice {border:0;border-radius:0;background:#cbbb99 url('../images/ui/note-paper.png') center/cover;box-shadow:0 5px 18px #0008;color:#322a20}
+.chat-page .acquired-copy strong {color:#3e2c1b}
+.chat-page .acquired-copy :is(small,span) {color:#64513a}
+.chat-page .acquired-icon {border:0;background:url('../images/inventory/photo-mount.png') center/100% 100% no-repeat;box-shadow:none;padding:10px 11px 12px}
+.chat-page .acquired-icon:after {display:none}
+.chat-page .acquired-close {color:#544330}
+.audio-setting {display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.audio-setting input[type='range'] {flex:1;min-width:120px;accent-color:#af8e57}
+.chat-page :is(h1,h2,h3) {font-family:Georgia,TrainKorean,serif}
+
+@media(max-width:600px) {
+  .inventory-grid {grid-template-columns:repeat(3,minmax(0,1fr));inset:24% 4% 12%;gap:2% 3%}
+  .inventory-card {font-size:2.65cqw}
+  .inventory-photo-mount {height:78%}
+  .inventory-overview>.inventory-pager {left:26%;right:26%;bottom:1%;height:max(24px,5.5%)}
+  .inventory-page-number {font-size:10px}
+  .chat-page .game-dialog[data-view='inventory'][data-inventory-mode='detail'] {width:min(94vw,520px)}
+  .game-dialog[data-view='inventory'][data-inventory-mode='detail'] .close-button {top:104px;right:0}
+  .inventory-detail {display:flex;flex-direction:column;gap:8px;aspect-ratio:auto}
+  .inventory-catalog {display:block;flex:none;height:96px;width:100%;margin:0;padding:30px 0 0}
+  .inventory-back {position:absolute;inset:0 auto auto 0;width:43%;height:27px;margin:0}
+  .inventory-catalog>.inventory-pager {position:absolute;inset:0 0 auto auto;width:49%;height:27px;margin:0;gap:3%}
+  .chat-page .inventory-catalog .item-list {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:4px;height:66px;overflow:hidden}
+  .chat-page .inventory-catalog .item-row {grid-template-columns:35% minmax(0,1fr);padding:5px;gap:5px;font-size:clamp(9px,2.7cqw,13px)}
+  .inventory-list-mount {height:92%}
+  .inventory-spread {flex:none;width:100%;height:min(calc(88svh - 116px),calc(94vw * 1.45));background-image:url('../images/inventory/record-paper.png');background-size:100% 100%}
+  .inventory-object {left:7%;top:4%;width:24%;height:17%}
+  .chat-page .inventory-spread .book-page {inset:22% 6% 5%}
+  .inventory-record-image {object-position:center top}
+  .inventory-spread .document-actions {left:0;right:0;gap:4px}
+  .inventory-spread .document-actions .paper-action {max-height:47px}
+  .book-page[data-action-count='1'] .inventory-record-image {height:84%}
+  .book-page[data-action-count='2'] .inventory-record-image {height:70%}
+}
+@media(prefers-reduced-motion:reduce) {.inventory-card *,.paper-action *{transition:none!important}}

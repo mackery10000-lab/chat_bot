@@ -1,15 +1,152 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ bot.name }}</title><link rel="icon" href="data:,"><link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}"><script src="{{ asset_url('assets/js/chatbot.js') }}" defer></script></head>
-<body class="landing-page">
-<div class="landing-backdrop" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
-<main class="landing-content">
-  <div class="rail-mark" aria-hidden="true">13-Fri</div>
-  <p class="eyebrow">A TRAIN THAT NEVER ARRIVES</p>
-  <h1>종착역이 없는<br><span>열차</span></h1>
-  <p class="landing-line">분명, 조금 전에도 이곳을 지나쳤다.</p>
-  <div class="title-rule" aria-hidden="true"><span>◆</span></div>
-  <a class="brass-button large" href="{{ url_for('detail') }}">열차에 오르기 <span aria-hidden="true">→</span></a>
-  <a class="continue-link" href="{{ url_for('chat') }}">이어서 조사하기</a>
-  <p class="landing-foot">대화하고, 기록하고, 돌아갈 길을 찾으세요.</p>
-</main><span class="corner corner-tl" aria-hidden="true"></span><span class="corner corner-br" aria-hidden="true"></span>
-<div id="scene-loading" class="scene-loading" role="status" aria-live="polite" aria-label="장면 로딩" hidden><div class="loading-center"><svg class="loading-train" viewBox="0 0 140 60" aria-hidden="true"><g class="train-body"><path d="M17 39V20h48v19zM21 20V12h35l9 8M73 20h37l13 19H73zM24 26h10v7H24zM41 26h10v7H41zM81 25h13v8H81zM101 25h7l6 8h-13M12 39h116"/><circle cx="29" cy="44" r="6"/><circle cx="54" cy="44" r="6"/><circle cx="84" cy="44" r="6"/><circle cx="113" cy="44" r="6"/></g><path class="loading-rail" d="M4 55h132M5 9h16M0 18h10M0 30h8"/></svg><span>로딩</span></div></div></body></html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운행 종료 불가 · NO LAST STOP</title>
+  <link rel="stylesheet" href="{{ asset_url('assets/start/style.css') }}">
+</head>
+<body>
+  <div class="screen">
+
+    <!-- 천장 등 3개: 꺼짐 / 깜박임 / 켜짐 (옛 객차의 둥근 유리 천장등) -->
+    <div class="ceiling" aria-hidden="true">
+      <div class="lamp lamp--off">
+        <div class="lamp__mount"></div>
+        <div class="lamp__shade"></div>
+        <div class="lamp__finial"></div>
+      </div>
+      <div class="lamp lamp--flicker">
+        <div class="lamp__mount"></div>
+        <div class="lamp__shade fx"></div>
+        <div class="lamp__finial"></div>
+      </div>
+      <div class="lamp lamp--on">
+        <div class="lamp__mount"></div>
+        <div class="lamp__shade"></div>
+        <div class="lamp__finial"></div>
+      </div>
+    </div>
+
+    <!-- 우측 상단 버튼 -->
+    <div class="top-actions">
+      <button class="icon-btn" type="button" aria-label="배경음악 끄기" aria-pressed="false" data-bgm-toggle>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+      </button>
+      <button class="icon-btn" type="button" aria-label="환경 설정" aria-haspopup="dialog" id="settingsBtn">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+
+    <main class="main">
+
+      <!-- 철도역 간판 = 게임 제목 -->
+      <div class="sign fx">
+        <div class="sign__chains" aria-hidden="true">
+          <span class="sign__chain"></span>
+          <span class="sign__chain"></span>
+        </div>
+        <div class="sign__frame concave-all">
+          <div class="sign__inner concave-all">
+            <div class="sign__board">
+              <!-- 오목한 모서리를 따라가는 금색 테두리 두 줄 -->
+              <span class="sign__line sign__line--gold1 concave-top" aria-hidden="true"></span>
+              <span class="sign__line sign__line--fill1 concave-top" aria-hidden="true"></span>
+              <span class="sign__line sign__line--gold2 concave-top" aria-hidden="true"></span>
+              <span class="sign__line sign__line--fill2 concave-top" aria-hidden="true"></span>
+              <!-- 낡은 느낌: 벗겨진 칠·긁힌 자국 -->
+              <span class="sign__wear sign__wear--chips" aria-hidden="true"></span>
+              <span class="sign__platform">PLATFORM 0 · CIRCLE LINE</span>
+              <h1 class="sign__title">
+                <!-- "불가"는 연한 회색으로, 한 글자씩 사라졌다 돌아온다 = 운행이 끝나지 않는다 -->
+                <span class="sign__title-line">운행 종료 <span class="title__shake fx"><span class="ghost fx">불</span><span class="ghost fx" style="animation-delay: -1.4s">가</span></span></span>
+              </h1>
+              <p class="sign__subtitle" lang="en">NO LAST STOP</p>
+            </div>
+            <div class="sign__strip">
+              <span class="neon fx">전역 출발</span>
+              <span class="sign__divider" aria-hidden="true"></span>
+              <div class="ticker">
+                <div class="ticker__track fx">
+                  <span>다음 정차역은 알 수 없습니다 · 이상한 점을 발견하면 되돌아가십시오 · 이상이 없으면 계속 가십시오</span>
+                  <span aria-hidden="true">다음 정차역은 알 수 없습니다 · 이상한 점을 발견하면 되돌아가십시오 · 이상이 없으면 계속 가십시오</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 나레이션 (타자 효과) -->
+      <p class="narration">
+        <span class="sr-only" id="narration-full"></span>
+        <span aria-hidden="true"><span id="line1"></span><br><span id="line2"></span><span class="caret fx"></span></span>
+      </p>
+
+      <!-- 승차권 버튼 -->
+      <div class="cta">
+        <!-- 승차권 이미지가 곧 탑승 버튼 -->
+        <a class="boarding-pass" href="{{ url_for('detail') }}" aria-label="탑승하기">
+          <img src="{{ asset_url('assets/start/images/ticket.webp') }}" width="1200" height="417" alt="13-Fri 열차 승차권. 서울역 출발, 도착역은 얼룩으로 지워짐">
+          <span class="boarding-pass__hint" aria-hidden="true">탑승하기 ›</span>
+        </a>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- 환경 설정 창 -->
+  <dialog class="settings" id="settingsDialog" aria-labelledby="setTitle">
+    <form method="dialog" class="settings__card">
+      <div class="settings__head">
+        <div class="settings__titles">
+          <span class="settings__en">SETTINGS</span>
+          <h2 id="setTitle" class="settings__title">환경 설정</h2>
+        </div>
+        <button class="settings__close" value="close" aria-label="닫기">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <hr class="settings__rule">
+
+      <div class="settings__row">
+        <div class="settings__label-line"><label for="setBgm">배경음악</label><output id="bgmOut" for="setBgm">70</output></div>
+        <input id="setBgm" class="set-range" type="range" min="0" max="100" value="70">
+      </div>
+
+      <div class="settings__row">
+        <div class="settings__label-line"><label for="setSfx">효과음</label><output id="sfxOut" for="setSfx">60</output></div>
+        <input id="setSfx" class="set-range" type="range" min="0" max="100" value="60">
+      </div>
+
+      <div class="settings__row">
+        <span id="speedLabel" class="settings__label">글자 속도</span>
+        <div class="seg-group" role="group" aria-labelledby="speedLabel">
+          <button type="button" class="seg" data-speed="slow" aria-pressed="false">느리게</button>
+          <button type="button" class="seg" data-speed="normal" aria-pressed="true">보통</button>
+          <button type="button" class="seg" data-speed="fast" aria-pressed="false">빠르게</button>
+        </div>
+      </div>
+
+      <div class="settings__row settings__row--inline">
+        <div class="settings__titles">
+          <label for="setFx" class="settings__label">화면 효과</label>
+          <span class="settings__hint">조명 깜박임, 간판 흔들림 같은 연출</span>
+        </div>
+        <input id="setFx" class="switch" type="checkbox" checked>
+      </div>
+
+      <hr class="settings__rule">
+      <div class="settings__foot">
+        <button type="button" class="settings__reset" id="resetSettings">기본값으로</button>
+        <button class="settings__ok" value="ok">확인</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="{{ asset_url('assets/js/audio.js') }}"></script>
+  <script src="{{ asset_url('assets/start/settings.js') }}"></script>
+  <script src="{{ asset_url('assets/start/script.js') }}"></script>
+</body>
+</html>

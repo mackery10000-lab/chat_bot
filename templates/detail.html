@@ -1,6 +1,107 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ bot.name }} · 탑승 안내</title><link rel="icon" href="data:,"><link rel="stylesheet" href="{{ asset_url('assets/css/style.css') }}"><script src="{{ asset_url('assets/js/chatbot.js') }}" defer></script></head>
-<body class="detail-page"><div class="landing-backdrop" aria-hidden="true"></div>
-<main class="ticket-intro"><a class="back-link" href="{{ url_for('index') }}">← 처음으로</a><p class="eyebrow">BOARDING GUIDE · 13-Fri</p><h1>눈을 뜨면,<br>다시 같은 풍경.</h1><p class="intro-description">{{ bot.description }}</p>
-<div class="guide-lines"><p><b>직접 말을 걸어보세요.</b> 질문, 조사, 이동을 채팅으로 요청할 수 있습니다.</p><p><b>가진 것을 살펴보세요.</b> 보관함과 조사 기록은 직접 열어 확인합니다.</p><p><b>마지막 선택은 신중하게.</b> 중요한 제출과 조작은 화면에서 한 번 더 확인합니다.</p></div>
-<form action="{{ url_for('chat') }}" method="get" class="boarding-form"><input type="hidden" name="new" value="1"><label for="username">탑승자 이름</label><input id="username" name="username" maxlength="50" placeholder="이름을 입력하세요" autocomplete="nickname"><button class="ink-button" type="submit">새로운 조사 시작 <span aria-hidden="true">→</span></button></form>
-<p class="small-note">같은 브라우저에서 진행을 이어갈 수 있습니다. 새로운 조사를 시작하면 새 기록을 사용합니다.</p></main><div id="scene-loading" class="scene-loading" role="status" aria-live="polite" aria-label="장면 로딩" hidden><div class="loading-center"><svg class="loading-train" viewBox="0 0 140 60" aria-hidden="true"><g class="train-body"><path d="M17 39V20h48v19zM21 20V12h35l9 8M73 20h37l13 19H73zM24 26h10v7H24zM41 26h10v7H41zM81 25h13v8H81zM101 25h7l6 8h-13M12 39h116"/><circle cx="29" cy="44" r="6"/><circle cx="54" cy="44" r="6"/><circle cx="84" cy="44" r="6"/><circle cx="113" cy="44" r="6"/></g><path class="loading-rail" d="M4 55h132M5 9h16M0 18h10M0 30h8"/></svg><span>로딩</span></div></div></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운행 종료 불가 · 승차권 발권</title>
+  <link rel="stylesheet" href="{{ asset_url('assets/start/style.css') }}">
+</head>
+<body>
+  <div class="screen">
+
+    <!-- 천장 등 하나 (깜박임) -->
+    <div class="ceiling" aria-hidden="true">
+      <div class="lamp lamp--flicker">
+        <div class="lamp__mount"></div>
+        <div class="lamp__shade fx"></div>
+        <div class="lamp__finial"></div>
+      </div>
+    </div>
+
+    <main class="register-page">
+
+      <header class="register-head">
+        <span class="register-head__en">TICKET OFFICE</span>
+        <h1 class="register-head__title">승차권 발권</h1>
+        <p class="register-head__desc">승객 성명을 적고 발권하십시오.</p>
+      </header>
+
+      <!-- 발권기: 놋쇠 투입구에서 표가 나옴 -->
+      <section class="booth" aria-label="승차권 발권기">
+        <!-- 발권기 앞면: 리벳 박힌 놋쇠 몸체 + 명판 + 표가 나오는 입구 -->
+        <div class="booth__slot" aria-hidden="true">
+          <span class="booth__rivet booth__rivet--l"></span>
+          <span class="booth__rivet booth__rivet--r"></span>
+          <span class="booth__plate">
+            <span class="booth__lamp fx" id="boothLamp"></span>
+            <span class="booth__label">TICKET · 13-FRI</span>
+          </span>
+          <span class="booth__opening"></span>
+        </div>
+
+        <div class="booth__mouth">
+          <!-- 발권 중인 승차권 -->
+          <form class="pass" id="nameForm" novalidate>
+            <div class="pass__top">
+              <span class="pass__dot" aria-hidden="true">●</span>
+              <span class="pass__brand">TRAIN TICKET</span>
+              <span class="pass__dot" aria-hidden="true">●</span>
+              <span class="pass__no">No. <span class="mono-ink">20161112-0000</span></span>
+            </div>
+
+            <div class="pass__grid">
+              <div class="pass__cell"><span class="pass__k">열차명</span><span class="pass__v pass__v--big">13-Fri</span></div>
+              <div class="pass__cell"><span class="pass__k">승차일</span><span class="pass__v">2016.11.12</span></div>
+              <div class="pass__cell"><span class="pass__k">출발 시간</span><span class="pass__v">22:00</span></div>
+
+              <div class="pass__cell"><span class="pass__k">출발역</span><span class="pass__v pass__v--big">서울역</span></div>
+              <div class="pass__cell pass__arrow" aria-hidden="true">→</div>
+              <div class="pass__cell"><span class="pass__k">도착역</span><span class="pass__blot" aria-label="잉크로 번져 읽을 수 없음"></span></div>
+            </div>
+
+            <!-- 승객 성명: 직접 적는 칸 -->
+            <div class="pass__name">
+              <div class="pass__name-head">
+                <label for="passengerName" class="pass__k">승객 성명</label>
+                <span class="pass__count mono-ink"><span id="count">0</span> / 8</span>
+              </div>
+              <div class="pass__name-row">
+                <input id="passengerName" class="pass__input" type="text" maxlength="8" autocomplete="off" placeholder="이름을 적으십시오" aria-describedby="nameHint">
+                <button type="button" class="dice" id="randomBtn" aria-label="무작위 이름">
+                  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><circle cx="15" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/></svg>
+                </button>
+              </div>
+              <span class="pass__hint" id="nameHint">한글이나 영문 1~8자</span>
+            </div>
+
+            <div class="pass__foot">
+              <span>객차 03호차</span><span>좌석 13A</span><span>편도 · 환불 불가</span>
+            </div>
+
+            <!-- 발권 도장 (발권하면 찍힘) -->
+            <span class="pass__stamp" aria-hidden="true">발 권<small>2016.11.12</small></span>
+          </form>
+        </div>
+      </section>
+
+      <!-- 이름에 반응하는 문구 -->
+      <p class="register-msg" id="message" aria-live="polite">성함을 적으면 승차권이 발권됩니다.</p>
+
+      <div class="register-actions">
+        <a class="back-link" href="{{ url_for('index') }}">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+          돌아가기
+        </a>
+        <button type="submit" form="nameForm" class="issue" id="issueBtn" disabled>
+          발권하기
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="{{ asset_url('assets/js/audio.js') }}"></script>
+  <script src="{{ asset_url('assets/start/name.js') }}"></script>
+</body>
+</html>

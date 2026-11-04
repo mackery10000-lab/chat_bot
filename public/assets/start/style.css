@@ -1,0 +1,1333 @@
+/* =========================================
+   운행 종료 불가 · 시작 화면
+   ========================================= */
+
+/* 간판·제목 글꼴 (오프라인이면 아래 대체 글꼴로 보임) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Song+Myung&family=DotGothic16&display=swap');
+
+/* 간판 제목 "운행 종료 불가" 글꼴 */
+@font-face {
+    font-family: 'Stella';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2608201622@stellar-serif/stellar-serif/Stellar_Serif_Bold_Condensed.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+    font-stretch: 75%;
+}
+
+/* 장체: font-family: 'Stella'; font-stretch: 75%; */
+
+@font-face {
+  font-family: 'OgRenaissanceSecret';
+  src: url('../css/OG-Renaissance-Secret.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  /* 배경 */
+  --void: #0B0907;
+  --bg: #0F0C0A;
+
+  /* 텍스트 */
+  --text: #E8DFCB;
+  --text-title: #E3D8BF;
+  --text-dim: #B5A88A;
+  --text-mute: #7D6E58;
+  --blood: #C8343B;
+
+  /* 금속 · 나무 */
+  --iron: #2A221A;
+  --iron-dark: #241C14;
+  --brass-light: #B8975A;
+  --brass: #7A5E30;
+  --brass-mid: #A4844B;
+  --brass-line: #8A7040;
+
+  /* 간판 */
+  --sign-red-1: #7A2222;
+  --sign-red-2: #5C1818;
+  --sign-red-3: #400F0F;
+  --gold: #E3C47A;
+  --gold-dim: #C9A65E;
+  --gold-ko: #D2B677;
+
+  /* 네온 · 전광 */
+  --neon-core: #FFE3DC;
+  --led-white: #F4F7F5;
+
+  /* 승차권 */
+  --paper: #E8DDC0;
+  --paper-hover: #F3E9CF;
+  --ink: #2A1F14;
+  --ink-soft: #6B5434;
+
+  /* 글꼴 */
+  --font-ui: 'OgRenaissanceSecret', 'Noto Sans KR', sans-serif;      /* 일반 글꼴 */
+  --font-story: 'OgRenaissanceSecret', 'Song Myung', serif;          /* 나레이션·이야기 글 */
+  --font-title: 'Cinzel', 'Song Myung', serif;                       /* 간판 글꼴: 처음 영어에 쓰던 Cinzel (한글은 송명체로) */
+  --font-serif-ko: 'Song Myung', serif;
+  --font-serif-en: 'Cinzel', serif;
+  --font-dot: 'DotGothic16', 'Noto Sans KR', sans-serif;
+  /* 궁서체: Windows·macOS 기본 글꼴. 없는 기기(안드로이드 등)에선 송명체로 대체 */
+  --font-gungsuh: 'Gungsuh', '궁서', 'GungSeo', '궁서체', 'Song Myung', serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--font-ui);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ---------- 천장 등 (둥근 유리 돔 + 놋쇠 받침) ---------- */
+.ceiling {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 150px;
+  border-top: 12px solid #1A140F;      /* 천장 */
+  box-shadow: inset 0 1px 0 #2A2016;
+}
+
+.lamp { display: flex; flex-direction: column; align-items: center; }
+
+.lamp__mount {                          /* 천장에 붙은 놋쇠 판 */
+  width: 60px;
+  height: 7px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #9A7A48, #5A4426);
+}
+
+.lamp__shade {                          /* 아래로 둥근 유리 갓 */
+  position: relative;
+  width: 50px;
+  height: 30px;
+  border: 1px solid #6B4A22;
+  border-top: none;
+  border-radius: 0 0 25px 25px / 0 0 28px 28px;
+  overflow: hidden;
+  background: radial-gradient(ellipse 70% 90% at 50% 20%, #FFF0C8 0%, #FFC062 45%, #C2752A 100%);
+  box-shadow: 0 12px 40px 14px rgba(255, 165, 65, 0.3), 0 40px 160px 60px rgba(255, 150, 60, 0.1);
+}
+/* 유리에 들어간 세로 살과 가로 띠 */
+.lamp__shade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 9px, rgba(110, 70, 25, 0.45) 9px 10.5px);
+}
+.lamp__shade::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12px;
+  height: 1.5px;
+  background: rgba(110, 70, 25, 0.5);
+}
+
+.lamp__finial {                         /* 갓 아래 작은 놋쇠 꼭지 */
+  width: 14px;
+  height: 5px;
+  margin-top: -1px;
+  border-radius: 0 0 4px 4px;
+  background: #8A6A3A;
+}
+
+.lamp--off .lamp__shade {
+  background: radial-gradient(ellipse 70% 90% at 50% 25%, #6E5232 0%, #4A361F 55%, #2E2114 100%);
+  box-shadow: 0 8px 22px 4px rgba(255, 150, 60, 0.08);
+}
+.lamp--flicker .lamp__shade {
+  background: radial-gradient(ellipse 70% 90% at 50% 20%, #FFF3D0 0%, #FFC56E 45%, #C77A2C 100%);
+  box-shadow: 0 12px 40px 14px rgba(255, 170, 70, 0.35), 0 40px 160px 60px rgba(255, 150, 60, 0.12);
+  animation: bulbFlicker 5.5s infinite;
+}
+
+@keyframes bulbFlicker {
+  0%, 100% { opacity: 1; }
+  41% { opacity: 1; }
+  42% { opacity: 0.25; }
+  43% { opacity: 0.9; }
+  45% { opacity: 0.35; }
+  47% { opacity: 1; }
+  78% { opacity: 0.85; }
+  80% { opacity: 1; }
+}
+
+/* ---------- 우측 상단 버튼 ---------- */
+.top-actions {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #5A4630;
+  background: #17120E;
+  color: #D9C9A3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.icon-btn:hover { background: #241C15; border-color: #8A6E45; }
+
+/* ---------- 메인 ---------- */
+.main {
+  width: 100%;
+  max-width: 1120px;
+  padding: 40px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+}
+
+/* ---------- 제목 ---------- */
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.title__main {
+  margin: 0;
+  font: 400 clamp(40px, 8vw, 72px)/1.15 var(--font-serif-ko);
+  letter-spacing: 0.04em;
+  color: var(--text-title);
+  text-shadow: 0 2px 0 #000, 0 0 30px rgba(0, 0, 0, 0.9), 0 0 60px rgba(255, 170, 80, 0.08);
+}
+
+.title__shake {
+  display: inline-block;
+  color: var(--blood);
+  animation: shake 2.8s infinite, glitchColor 2.8s infinite;
+}
+
+.title__sub {
+  margin: 0;
+  padding-left: 0.45em;
+  font: 400 15px var(--font-dot);
+  letter-spacing: 0.45em;
+  color: var(--text-mute);
+}
+
+/* ---------- 철도역 간판 ---------- */
+.sign {
+  width: 100%;
+  max-width: 760px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  /* mask로 잘린 모양을 따라 그림자가 지도록 box-shadow 대신 drop-shadow */
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.65));
+  /* 쇠사슬에 매달린 것처럼: 위쪽 가운데를 축으로 살짝 기운 채 달랑거림 */
+  transform: rotate(-2.2deg);
+  transform-origin: 50% 0;
+  animation: signSwing 5s ease-in-out infinite;
+}
+
+/* 기본은 -2.2도 기울기, 좌우로 흔들리다 중간(56~60%)에 열차가 덜컹하듯 한 번 튐 */
+@keyframes signSwing {
+  0%, 100% { transform: rotate(-2.2deg); }
+  22% { transform: rotate(-3.4deg); }
+  48% { transform: rotate(-0.9deg); }
+  56% { transform: rotate(-1.4deg); }
+  60% { transform: rotate(-0.6deg); }
+  78% { transform: rotate(-2.9deg); }
+}
+
+/* ---------- 오목한 모서리 (간판 모양) ----------
+   --r: 바깥 간판 기준 모서리 홈 반지름
+   --o: 이 요소가 바깥 간판 모서리에서 얼마나 안쪽에 있는지
+   → 홈의 중심을 바깥 모서리에 맞춰서, 안쪽 층도 같은 곡선을 따라가게 함 */
+.concave-all {
+  --cr: calc(var(--r) + var(--o));
+  -webkit-mask:
+    radial-gradient(circle at calc(-1 * var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top right / 51% 51% no-repeat,
+    radial-gradient(circle at calc(-1 * var(--o)) calc(100% + var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) bottom left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(100% + var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) bottom right / 51% 51% no-repeat;
+          mask:
+    radial-gradient(circle at calc(-1 * var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top right / 51% 51% no-repeat,
+    radial-gradient(circle at calc(-1 * var(--o)) calc(100% + var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) bottom left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(100% + var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) bottom right / 51% 51% no-repeat;
+}
+
+/* 위쪽 두 모서리만 오목 (간판 판 안쪽 금선용) */
+.concave-top {
+  --cr: calc(var(--r) + var(--o));
+  -webkit-mask:
+    radial-gradient(circle at calc(-1 * var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top right / 51% 51% no-repeat,
+    linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
+          mask:
+    radial-gradient(circle at calc(-1 * var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top left / 51% 51% no-repeat,
+    radial-gradient(circle at calc(100% + var(--o)) calc(-1 * var(--o)), transparent var(--cr), #000 calc(var(--cr) + 0.5px)) top right / 51% 51% no-repeat,
+    linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
+}
+
+.sign__chains {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 120px;
+  height: 30px;
+}
+
+.sign__chain {
+  width: 3px;
+  height: 30px;
+  background: repeating-linear-gradient(180deg, #8A7450 0 5px, #2A2016 5px 7px);
+}
+
+/* 놋쇠 틀: 네 모서리가 안으로 파인 간판 모양 */
+.sign__frame {
+  --r: 28px;
+  --o: 0px;
+  padding: 6px;
+  /* 녹청(초록 얼룩)이 낀 낡은 놋쇠 */
+  background: radial-gradient(ellipse 8% 40% at 6% 60%, rgba(70, 100, 80, 0.55), transparent 70%), radial-gradient(ellipse 10% 50% at 93% 30%, rgba(70, 100, 80, 0.45), transparent 70%), linear-gradient(180deg, #A48A55 0%, #6A5230 55%, #8E7444 100%);
+}
+
+.sign__inner {
+  --r: 28px;
+  --o: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign__board {
+  --red-bg: radial-gradient(ellipse 90% 120% at 50% 40%, var(--sign-red-1) 0%, var(--sign-red-2) 70%, var(--sign-red-3) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 34px 48px 28px;
+  text-align: center;
+  background: var(--red-bg);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25);
+}
+.sign__board > *:not(.sign__line):not(.sign__wear) { position: relative; }
+
+/* ---------- 간판 낡은 효과 ---------- */
+.sign__wear { position: absolute; inset: 0; pointer-events: none; }
+/* 칠이 벗겨진 작은 점들과 가는 긁힌 자국 */
+.sign__wear--chips { background: radial-gradient(circle at 18% 22%, rgba(214, 190, 150, 0.55) 0 2px, transparent 3px), radial-gradient(circle at 64% 14%, rgba(214, 190, 150, 0.5) 0 3px, transparent 4px), radial-gradient(circle at 82% 70%, rgba(214, 190, 150, 0.5) 0 2px, transparent 3px), radial-gradient(circle at 40% 82%, rgba(214, 190, 150, 0.45) 0 4px, transparent 5px), radial-gradient(circle at 92% 50%, rgba(214, 190, 150, 0.5) 0 1.5px, transparent 2.5px), radial-gradient(circle at 6% 40%, rgba(214, 190, 150, 0.5) 0 2.5px, transparent 3.5px), repeating-linear-gradient(104deg, transparent 0 46px, rgba(255, 235, 200, 0.045) 46px 47px), repeating-linear-gradient(76deg, transparent 0 63px, rgba(255, 235, 200, 0.035) 63px 64px); }
+
+/* 금색 테두리 두 줄: 금 → 빨강 → 금 → 빨강 층을 겹쳐서 선을 만듦 */
+.sign__line { position: absolute; --r: 28px; }
+.sign__line--gold1 { inset: 9px;  --o: 15px; background: var(--brass-light); }
+.sign__line--fill1 { inset: 10px; --o: 16px; background: var(--red-bg); }
+.sign__line--gold2 { inset: 12px; --o: 18px; background: var(--brass-line); }
+.sign__line--fill2 { inset: 13px; --o: 19px; background: var(--red-bg); box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.18); }
+
+.sign__platform {
+  padding-left: 0.32em;
+  font: 600 12px var(--font-title);
+  letter-spacing: 0.32em;
+  color: #B09254;
+}
+
+/* 간판 제목 "운행 종료 불가" */
+.sign__title {
+  margin: 0;
+  padding-left: 0.16em;
+  font: 400 clamp(28px, 8vw, 76px)/1.15 'Stella', var(--font-serif-ko);
+  font-stretch: 75%;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  color: #120808;
+  text-shadow: 0 1px 0 rgba(232, 203, 132, 0.35), 0 0 14px rgba(0, 0, 0, 0.35);
+}
+.sign__title-line { display: block; }
+
+/* 영어 부제 "NO LAST STOP": 양옆 금색 선 */
+.sign__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  font: 600 clamp(12px, 1.8vw, 16px) var(--font-serif-en);
+  letter-spacing: clamp(0.2em, 1vw, 0.42em);
+  white-space: nowrap;
+  color: #B09254;
+}
+.sign__subtitle::before,
+.sign__subtitle::after { content: ""; width: clamp(16px, 6vw, 72px); height: 1px; background: currentColor; }
+.sign__subtitle::after { margin-left: calc(-1 * clamp(0.2em, 1vw, 0.42em)); }
+
+/* 간판 안 "불가": 흔들림 없이 한 글자씩 사라지는 효과만 */
+.sign__title .title__shake { animation: none; }
+
+/* 유령 글자: 연한 회색, 한 글자씩 흐려지며 사라졌다 돌아옴 */
+.ghost {
+  display: inline-block;
+  color: #C9C9C6;
+  text-shadow: none;
+  animation: vanish 4.2s ease-in-out infinite;
+}
+
+@keyframes vanish {
+  0%, 100% { opacity: 0.9; filter: blur(0); }
+  30% { opacity: 0.9; filter: blur(0); }
+  42% { opacity: 0.04; filter: blur(3px); }
+  62% { opacity: 0.04; filter: blur(3px); }
+  74% { opacity: 0.9; filter: blur(0); }
+}
+
+.sign__en {
+  padding-left: 0.3em;
+  font: 600 13px var(--font-serif-en);
+  letter-spacing: 0.3em;
+  color: #B09254;
+}
+
+.sign__strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 44px 12px; /* 아래 오목한 모서리에 글자가 잘리지 않게 좌우 여백 넉넉히 */
+  background: #120E0B;
+  border-top: 1px solid #2A2016;
+}
+
+.sign__divider { flex: none; width: 1px; height: 18px; background: #3A2E22; }
+
+/* 네온 "전역 출발" */
+.neon {
+  flex: none;
+  font: 400 15px var(--font-title);
+  letter-spacing: 0.12em;
+  color: var(--neon-core);
+  text-shadow:
+    0 0 2px #FFF,
+    0 0 6px #FF6A50,
+    0 0 12px #FF3B2F,
+    0 0 24px #FF2A1F,
+    0 0 40px rgba(255, 40, 30, 0.6);
+  animation: flicker 3s infinite;
+}
+
+/* 흐르는 흰 글씨 */
+.ticker {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font: 400 16px var(--font-title);
+  letter-spacing: 0.04em;
+}
+
+.ticker__track {
+  display: inline-flex;
+  gap: 80px;
+  color: var(--led-white);
+  text-shadow: 0 0 2px #FFF, 0 0 8px rgba(255, 255, 255, 0.7), 0 0 18px rgba(220, 235, 245, 0.45);
+  animation: ledScroll 22s linear infinite;
+}
+
+/* ---------- 나레이션 ---------- */
+.narration {
+  margin: 0;
+  min-height: 70px;
+  text-align: center;
+  font: 400 18px/1.9 var(--font-story);
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: #D9C9A3;
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+/* ---------- 승차권 버튼 ---------- */
+.cta { display: flex; justify-content: center; margin-top: 28px; } /* 나레이션과 간격 */
+
+/* 시작화면 승차권 이미지 버튼 */
+.boarding-pass {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(440px, 100%);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.boarding-pass img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55)) saturate(0.92);
+  transform: rotate(-1.2deg);
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+.boarding-pass__hint {
+  font: 500 14px var(--font-ui);
+  letter-spacing: 0.2em;
+  color: #C9A65A;
+  opacity: 0.75;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+.boarding-pass:hover img,
+.boarding-pass:focus-visible img {
+  transform: rotate(0deg) translateY(-4px);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 14px rgba(224, 178, 92, 0.35)) saturate(1);
+}
+.boarding-pass:hover .boarding-pass__hint,
+.boarding-pass:focus-visible .boarding-pass__hint { opacity: 1; color: #E8CB84; }
+.boarding-pass:active img { transform: translateY(-1px) scale(0.99); }
+.boarding-pass:focus-visible { outline: 2px solid #E8CB84; outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) { .boarding-pass img { transition: none; } }
+
+/* 낡은 기차표: 누렇게 바랜 종이 + 얼룩 + 접힌 자국 + 가장자리 변색 */
+.ticket {
+  --stub-w: 96px;
+  position: relative;
+  flex: 0 1 420px;
+  min-height: 92px;
+  display: flex;
+  align-items: stretch;
+  border-radius: 3px;
+  color: #3A2A18;
+  text-decoration: none;
+  border: 1px solid #9A7A48;
+  background:
+    radial-gradient(ellipse 38% 70% at 82% 20%, rgba(150, 100, 40, 0.22), transparent 70%),   /* 얼룩 1 */
+    radial-gradient(circle at 30% 92%, rgba(120, 80, 30, 0.2), transparent 38%),             /* 얼룩 2 */
+    linear-gradient(90deg, transparent 64%, rgba(90, 60, 25, 0.14) 64.4%, transparent 65.2%), /* 접힌 자국 */
+    linear-gradient(180deg, #E4D4AA 0%, #D3BF92 100%);                                       /* 바랜 종이 */
+  box-shadow:
+    inset 0 0 22px rgba(110, 70, 25, 0.45),   /* 가장자리 변색 */
+    0 6px 0 rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(255, 200, 120, 0.12);
+  transform: rotate(-1.2deg);
+  transition: transform 0.18s, filter 0.18s;
+}
+.ticket:hover {
+  filter: brightness(1.07);
+  transform: rotate(-0.4deg) translateY(-3px);
+}
+
+/* 절취선 위아래 반원 홈 (배경색으로 뚫린 것처럼) */
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  left: var(--stub-w);
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+.ticket::before { top: -9px; }
+.ticket::after { bottom: -9px; }
+
+.ticket__stub {
+  flex: none;
+  width: var(--stub-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-right: 2px dashed rgba(110, 80, 40, 0.55);
+  font: 400 11px var(--font-dot);
+  color: #6B5434;
+}
+
+/* 검표 펀치 구멍 */
+.ticket__hole {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(110, 80, 40, 0.4);
+}
+.ticket__no { font-size: 16px; color: #3A2A18; letter-spacing: 0.08em; }
+.ticket__class { font-size: 10px; letter-spacing: 0.1em; }
+
+.ticket__body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+}
+.ticket__body svg { margin-left: auto; }
+
+.ticket__text { display: flex; flex-direction: column; gap: 3px; }
+.ticket__label { font: 600 10px var(--font-serif-en); letter-spacing: 0.24em; color: #6B5434; }
+.ticket__title { font: 900 24px/1.15 var(--font-ui); letter-spacing: 0.08em; }
+.ticket__desc { font: 500 12.5px/1.3 var(--font-ui); color: #5E4A2E; }
+
+/* 비스듬히 찍힌 빨간 검표 도장 */
+.ticket__stamp {
+  position: absolute;
+  right: 52px;
+  top: 10px;
+  padding: 2px 7px;
+  border: 2px solid rgba(168, 44, 44, 0.55);
+  border-radius: 4px;
+  transform: rotate(-14deg);
+  font: 400 12px/1.25 var(--font-dot);
+  color: rgba(168, 44, 44, 0.7);
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+/* 키보드 포커스 */
+.ticket:focus-visible,
+.icon-btn:focus-visible {
+  outline: 3px solid #E3C98F;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   캐릭터 이름 정하기 (name.html)
+   ========================================= */
+.register-page {
+  width: 100%;
+  max-width: 680px;
+  padding: 28px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.register-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.register-head__en {
+  padding-left: 0.36em;
+  font: 600 12px var(--font-serif-en);
+  letter-spacing: 0.36em;
+  color: var(--gold-dim);
+}
+.register-head__title {
+  margin: 0;
+  font: 400 clamp(38px, 7vw, 52px)/1.15 var(--font-serif-ko);
+  letter-spacing: 0.06em;
+  color: var(--text-title);
+  text-shadow: 0 2px 0 #000, 0 0 30px rgba(0, 0, 0, 0.9);
+}
+.register-head__desc {
+  margin: 0;
+  font: 400 16px/1.8 var(--font-story);
+  color: var(--text-dim);
+}
+
+/* 낡은 명부 종이 */
+.ledger {
+  padding: 26px 28px 24px;
+  border-radius: 3px;
+  border: 1px solid #9A7A48;
+  color: #3A2A18;
+  background:
+    radial-gradient(ellipse 30% 40% at 88% 12%, rgba(150, 100, 40, 0.2), transparent 70%),
+    radial-gradient(circle at 8% 90%, rgba(120, 80, 30, 0.18), transparent 30%),
+    linear-gradient(180deg, #E4D4AA 0%, #D6C397 100%);
+  box-shadow: inset 0 0 30px rgba(110, 70, 25, 0.45), 0 18px 34px rgba(0, 0, 0, 0.6);
+  transform: rotate(-0.5deg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ledger__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(90, 60, 25, 0.55);
+}
+.ledger__line { font: 700 15px var(--font-serif-en); letter-spacing: 0.16em; color: #5A1A1A; }
+.ledger__car { font: 400 13px var(--font-dot); color: #6B5434; }
+
+.ledger__table { width: 100%; border-collapse: collapse; }
+.ledger__table th {
+  padding: 0 0 6px;
+  text-align: left;
+  font: 600 11px var(--font-serif-en);
+  letter-spacing: 0.14em;
+  color: #6B5434;
+}
+.ledger__table .col-no { width: 70px; }
+.ledger__table .col-date { width: 90px; }
+.ledger__table .col-off { width: 60px; }
+.ledger__table td {
+  padding: 8px 0;
+  border-top: 1px solid rgba(90, 60, 25, 0.35);
+  font: 400 17px var(--font-serif-ko);
+  color: #4A3820;
+}
+.ledger__table td.mono,
+.mono { font: 400 13px var(--font-dot); color: #6B5434; }
+.ledger__table td.off { color: #8E2A2A; }
+
+/* 잉크가 번져 사라질 듯한 이름 */
+.smudge { display: inline-block; filter: blur(0.7px); animation: inkFade 5s ease-in-out infinite; }
+.smudge-note { margin-left: 10px; font: 400 12px var(--font-ui); color: #6B5434; }
+
+/* 내 이름 칸 */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 14px 16px 12px;
+  border: 2px solid rgba(142, 42, 42, 0.55);
+  border-radius: 2px;
+  background: rgba(255, 250, 235, 0.22);
+}
+.entry__head { display: flex; align-items: center; gap: 10px; }
+.entry__label { font: 700 14px var(--font-ui); color: #3A2A18; }
+.entry__count { margin-left: auto; font-size: 12px; }
+.entry__row { display: flex; align-items: flex-end; gap: 10px; }
+.entry__input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 4px;
+  border: none;
+  border-bottom: 2px solid #5E4A2E;
+  background: transparent;
+  font: 400 28px var(--font-serif-ko);
+  letter-spacing: 0.08em;
+  color: #2A1F14;
+}
+.entry__input::placeholder { color: #8C7556; opacity: 1; }
+.entry__input:focus {
+  outline: none;
+  border-bottom-color: #8E2A2A;
+  background: rgba(255, 250, 235, 0.35);
+}
+.entry__hint { font: 400 12px var(--font-ui); color: #5E4A2E; }
+
+.dice {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid rgba(90, 60, 25, 0.5);
+  background: transparent;
+  color: #3A2A18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.dice:hover { background: rgba(110, 80, 40, 0.15); }
+
+.register-msg {
+  margin: 0;
+  min-height: 58px;
+  text-align: center;
+  font: 400 17px/1.8 var(--font-story);
+  color: var(--text-dim);
+}
+.register-msg__name { color: var(--text-title); }
+
+.register-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.back-link {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-radius: 4px;
+  border: 1px solid #5A4630;
+  color: #D9C9A3;
+  text-decoration: none;
+  font: 500 15px var(--font-ui);
+}
+.back-link:hover { color: #F2DDB0; border-color: #8A6E45; }
+
+/* 승차권 발급 버튼 (작은 낡은 표) */
+.issue {
+  min-height: 60px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border-radius: 3px;
+  border: 1px solid #9A7A48;
+  background: linear-gradient(180deg, #E4D4AA 0%, #D3BF92 100%);
+  box-shadow: inset 0 0 16px rgba(110, 70, 25, 0.4), 0 5px 0 rgba(0, 0, 0, 0.5);
+  color: #3A2A18;
+  font: 900 19px var(--font-ui);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transform: rotate(-1deg);
+  transition: transform 0.18s, filter 0.18s;
+}
+.issue:hover:not(:disabled) { filter: brightness(1.07); transform: rotate(-0.4deg) translateY(-3px); }
+.issue:disabled {
+  border: 1px dashed #5A4630;
+  background: #17120E;
+  box-shadow: none;
+  color: #8C7B66;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.issue:focus-visible,
+.back-link:focus-visible,
+.dice:focus-visible {
+  outline: 3px solid #E3C98F;
+  outline-offset: 4px;
+}
+
+@keyframes inkFade {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.25; }
+}
+
+/* =========================================
+   환경 설정 창 (dialog)
+   ========================================= */
+.settings {
+  width: min(420px, calc(100% - 32px));
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+}
+.settings::backdrop { background: rgba(6, 5, 4, 0.72); backdrop-filter: blur(3px); }
+
+.settings__card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 22px 24px 20px;
+  border-radius: 4px;
+  border: 1px solid #9A7A48;
+  background:
+    radial-gradient(ellipse 38% 50% at 85% 15%, rgba(150, 100, 40, 0.2), transparent 70%),
+    radial-gradient(circle at 10% 92%, rgba(120, 80, 30, 0.18), transparent 35%),
+    linear-gradient(180deg, #E4D4AA 0%, #D3BF92 100%);
+  box-shadow: inset 0 0 26px rgba(110, 70, 25, 0.45), 0 24px 50px rgba(0, 0, 0, 0.7);
+  font-family: var(--font-ui);
+}
+
+.settings__head { display: flex; align-items: flex-start; gap: 12px; }
+.settings__titles { display: flex; flex-direction: column; gap: 2px; }
+.settings__en { font: 600 10px var(--font-serif-en); letter-spacing: 0.3em; color: #6B5434; }
+.settings__title { margin: 0; font: 400 26px/1.2 var(--font-serif-ko); color: var(--ink); }
+.settings__close {
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(90, 60, 25, 0.5);
+  background: transparent;
+  color: #3A2A18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.settings__close:hover { background: rgba(60, 40, 20, 0.12); }
+
+.settings__rule { margin: 0; border: none; border-top: 1px dashed rgba(110, 80, 40, 0.55); }
+
+.settings__row { display: flex; flex-direction: column; gap: 6px; }
+.settings__row--inline { flex-direction: row; align-items: center; gap: 12px; }
+.settings__label-line { display: flex; align-items: baseline; font: 700 14px var(--font-ui); }
+.settings__label-line output { margin-left: auto; font: 400 13px var(--font-dot); color: #5E4A2E; }
+.settings__label { font: 700 14px var(--font-ui); }
+.settings__hint { font: 400 12px var(--font-ui); color: #5E4A2E; }
+
+.set-range { width: 100%; height: 24px; margin: 0; accent-color: #8E2A2A; cursor: pointer; }
+
+.seg-group { display: flex; border: 1px solid #6B5434; border-radius: 4px; overflow: hidden; }
+.seg {
+  flex: 1;
+  min-height: 42px;
+  border: none;
+  border-left: 1px solid #6B5434;
+  background: transparent;
+  color: #3A2A18;
+  font: 700 13px var(--font-ui);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.seg:first-child { border-left: none; }
+.seg[aria-pressed="true"] { background: #3A2A18; color: #F3E9CF; }
+.seg:hover { filter: brightness(1.08); }
+
+/* 켜기/끄기 스위치 */
+.switch {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  position: relative;
+  margin: 0 0 0 auto;
+  width: 48px;
+  height: 28px;
+  border-radius: 99px;
+  border: 1px solid #6B5434;
+  background: #A8987A;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #F3E9CF;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s;
+}
+.switch:checked { background: #8E2A2A; }
+.switch:checked::after { transform: translateX(20px); }
+
+.settings__foot { display: flex; align-items: center; gap: 12px; }
+.settings__reset {
+  min-height: 44px;
+  padding: 0 4px;
+  border: none;
+  background: transparent;
+  font: 500 13px var(--font-ui);
+  color: #5E4A2E;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.settings__reset:hover { color: var(--ink); }
+.settings__ok {
+  margin-left: auto;
+  min-height: 44px;
+  padding: 0 26px;
+  border-radius: 4px;
+  border: 1px solid #5A1A1A;
+  background: #8E2A2A;
+  color: #F3E9CF;
+  font: 700 15px var(--font-ui);
+  letter-spacing: 0.08em;
+  box-shadow: 0 3px 0 #5A1A1A;
+  cursor: pointer;
+}
+.settings__ok:hover { background: #A33434; }
+
+.set-range:focus-visible, .switch:focus-visible, .seg:focus-visible,
+.settings__close:focus-visible, .settings__ok:focus-visible, .settings__reset:focus-visible {
+  outline: 3px solid #8E2A2A;
+  outline-offset: 3px;
+}
+
+/* "화면 효과" 끄면 모든 연출 정지 */
+.no-fx .fx { animation: none !important; }
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 600px) {
+  .ceiling { gap: 70px; }
+  .sign__chains { padding: 0 40px; }
+  .sign__strip { flex-wrap: wrap; }
+  .sign__divider { display: none; }
+  .ticker { flex-basis: 100%; }
+}
+
+/* ---------- 애니메이션 ---------- */
+@keyframes flame {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  20% { opacity: 0.85; transform: scaleY(0.92); }
+  35% { opacity: 1; transform: scaleY(1.06); }
+  52% { opacity: 0.7; transform: scaleY(0.88); }
+  54% { opacity: 0.35; transform: scaleY(0.8); }
+  57% { opacity: 0.95; transform: scaleY(1.04); }
+  80% { opacity: 0.9; transform: scaleY(0.96); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.9; }
+  88% { opacity: 0.9; }
+  89% { opacity: 0.15; }
+  90% { opacity: 0.8; }
+  93% { opacity: 0.1; }
+  95% { opacity: 0.85; }
+}
+
+/* "종착지" 흔들림: 평소 미세한 떨림 + 66~74% 구간에 크게 비틀림 */
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0) skewX(0); }
+  8% { transform: translate(0.6px, -0.4px); }
+  16% { transform: translate(-0.5px, 0.5px); }
+  24% { transform: translate(0.4px, 0.6px); }
+  32% { transform: translate(-0.6px, -0.3px); }
+  40% { transform: translate(0.3px, 0.4px); }
+  48% { transform: translate(-0.4px, -0.5px); }
+  56% { transform: translate(0.5px, 0.2px); }
+  64% { transform: translate(0, 0); }
+  66% { transform: translate(-4px, 1px) skewX(-6deg); }
+  68% { transform: translate(3px, -2px) skewX(4deg); }
+  70% { transform: translate(-2px, 2px); }
+  72% { transform: translate(2px, 0) skewX(-2deg); }
+  74% { transform: translate(0, 0); }
+  82% { transform: translate(0.5px, -0.5px); }
+  90% { transform: translate(-0.5px, 0.4px); }
+}
+
+@keyframes glitchColor {
+  0%, 64%, 75%, 100% { text-shadow: 0 0 18px rgba(200, 40, 40, 0.35); }
+  66% { text-shadow: -4px 0 rgba(255, 40, 40, 0.8), 4px 0 rgba(80, 220, 255, 0.6); }
+  70% { text-shadow: 3px 0 rgba(255, 40, 40, 0.8), -3px 0 rgba(80, 220, 255, 0.6); }
+}
+
+@keyframes caretBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes ledScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* 움직임 줄이기 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .fx { animation: none !important; }
+}
+
+
+/* =========================================
+   승차권 발권 (name.html)
+   ========================================= */
+/* 발권기 몸체: 낡은 놋쇠 발권기의 앞면 */
+.booth { display: flex; flex-direction: column; align-items: center; }
+.booth__slot {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 640px);
+  height: 82px;
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+  /* 위는 둥글고 아래는 살짝 오므린 모양 */
+  border-radius: 26px 26px 14px 14px / 30px 30px 14px 14px;
+  background:
+    /* 녹청·얼룩 */
+    radial-gradient(ellipse 14% 60% at 6% 70%, rgba(70, 100, 80, 0.45), transparent 70%),
+    radial-gradient(ellipse 10% 50% at 95% 30%, rgba(70, 100, 80, 0.35), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(255, 230, 170, 0.35), transparent 70%),
+    /* 가로로 쓸린 금속 결 */
+    repeating-linear-gradient(90deg, rgba(255, 240, 200, 0.03) 0 2px, rgba(0, 0, 0, 0.03) 2px 5px),
+    linear-gradient(180deg, #B39660 0%, #8A6C3C 38%, #6A5230 72%, #4E3B21 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 235, 185, 0.55),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.45),
+    inset 2px 0 3px rgba(255, 230, 170, 0.15),
+    inset -2px 0 3px rgba(0, 0, 0, 0.25),
+    0 10px 22px rgba(0, 0, 0, 0.65);
+}
+/* 몸체 위 테두리 선 (한 겹 안쪽) */
+.booth__slot::before {
+  content: '';
+  position: absolute;
+  inset: 6px 10px 26px;
+  border-radius: 20px 20px 6px 6px / 24px 24px 6px 6px;
+  border: 1px solid rgba(40, 26, 10, 0.45);
+  box-shadow: 0 1px 0 rgba(255, 230, 170, 0.25);
+  pointer-events: none;
+}
+
+/* 리벳 */
+.booth__rivet {
+  position: absolute;
+  top: 22px;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #F0D9A0, #A07E46 45%, #4A3618 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.booth__rivet--l { left: 26px; }
+.booth__rivet--r { right: 26px; }
+
+/* 가운데 새긴 명판 */
+.booth__plate {
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #2A1D10, #1A120A);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 230, 170, 0.35);
+}
+.booth__label { font: 600 10px var(--font-serif-en); letter-spacing: 0.32em; color: #C9A464; }
+.booth__lamp {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4A1410;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.booth.is-ready .booth__lamp { background: #FFB45A; box-shadow: 0 0 6px #FF9A3A, 0 0 14px rgba(255, 140, 40, 0.6); }
+.booth.is-printing .booth__lamp { animation: lampBlink 0.25s steps(2) infinite; }
+@keyframes lampBlink { 50% { background: #4A1410; box-shadow: none; } }
+
+/* 표가 나오는 입구: 아래로 튀어나온 입술 + 그 안의 어두운 틈 */
+.booth__opening {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 92%;
+  height: 20px;
+  translate: -50% 0;
+  border-radius: 6px 6px 12px 12px;
+  background: linear-gradient(180deg, #5A4426 0%, #8E7244 45%, #6A5230 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 230, 170, 0.4), 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+.booth__opening::after {
+  content: '';
+  position: absolute;
+  left: 3%; right: 3%; top: 4px;
+  height: 7px;
+  border-radius: 4px;
+  background: #080503;
+  box-shadow: inset 0 2px 3px #000, 0 1px 0 rgba(255, 230, 170, 0.25);
+}
+
+/* 투입구 아래: 표가 걸려 나오는 영역 (위쪽은 틈 속에 숨음) */
+.booth__mouth {
+  position: relative;
+  width: min(100%, 580px);
+  margin-top: 0;
+  overflow: hidden;
+  padding: 0 10px 26px;
+}
+
+/* 승차권 종이 (메인 화면 표와 같은 크림색 + 갈색 잉크) */
+.pass {
+  --paper: #E8D8B0;
+  --brown: #4A2814;
+  --brown-soft: #7A5636;
+  position: relative;
+  padding: 22px 26px 16px;
+  color: var(--brown);
+  background:
+    radial-gradient(ellipse 30% 40% at 90% 10%, rgba(150, 100, 40, 0.18), transparent 70%),
+    radial-gradient(circle at 6% 92%, rgba(120, 80, 30, 0.16), transparent 30%),
+    linear-gradient(180deg, #ECDDB6 0%, #DCC89C 100%);
+  box-shadow: inset 0 0 28px rgba(110, 70, 25, 0.4), 0 16px 30px rgba(0, 0, 0, 0.55);
+  /* 양옆 반원 홈 + 아래 톱니 (뜯는 선) */
+  -webkit-mask:
+    radial-gradient(circle 11px at 0 58%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 11px at 100% 58%, transparent 98%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle 11px at 0 58%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 11px at 100% 58%, transparent 98%, #000) right / 51% 100% no-repeat;
+  transform: translateY(0);
+  animation: passFeed 1.1s cubic-bezier(.3, .8, .3, 1) both;
+}
+/* 처음 들어오면 투입구에서 표가 밀려 나옴 */
+@keyframes passFeed {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+/* 안쪽 테두리 */
+.pass::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(74, 40, 20, 0.45);
+  outline: 1px solid rgba(74, 40, 20, 0.2);
+  outline-offset: 3px;
+  pointer-events: none;
+}
+
+.pass__top { display: flex; align-items: center; justify-content: center; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(74, 40, 20, 0.4); }
+.pass__brand { font: 600 12px var(--font-serif-en); letter-spacing: 0.4em; padding-left: 0.4em; }
+.pass__dot { font-size: 7px; }
+.pass__no { margin-left: auto; font: 400 11px var(--font-ui); color: var(--brown-soft); }
+.mono-ink { font-family: var(--font-dot); letter-spacing: 0.04em; }
+
+.pass__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 10px 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(74, 40, 20, 0.4);
+}
+.pass__cell { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pass__cell + .pass__cell:not(:nth-child(4)) { border-left: 1px solid rgba(74, 40, 20, 0.3); padding-left: 12px; }
+.pass__k { font: 400 11px var(--font-ui); color: var(--brown-soft); letter-spacing: 0.06em; }
+.pass__v { font: 700 17px/1.2 'Libre Baskerville', var(--font-serif-ko); }
+.pass__v--big { font-size: 22px; }
+.pass__arrow { justify-content: center; align-items: center; font-size: 26px; border-left: 0 !important; padding-left: 0 !important; }
+/* 도착역: 잉크 얼룩 */
+.pass__blot {
+  display: block;
+  width: 86px; height: 26px;
+  margin-top: 2px;
+  border-radius: 45% 55% 40% 60% / 60% 40% 60% 40%;
+  background: radial-gradient(ellipse at 40% 50%, rgba(60, 28, 12, 0.85), rgba(60, 28, 12, 0.55) 55%, transparent 72%);
+  filter: blur(0.6px);
+}
+
+/* 성명 칸 */
+.pass__name { padding: 12px 0 10px; border-bottom: 1px dashed rgba(74, 40, 20, 0.5); }
+.pass__name-head { display: flex; align-items: center; }
+.pass__count { margin-left: auto; font-size: 12px; color: var(--brown-soft); }
+.pass__name-row { display: flex; align-items: flex-end; gap: 10px; margin-top: 4px; }
+.pass__input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 4px;
+  border: 0;
+  border-bottom: 2px solid rgba(74, 40, 20, 0.55);
+  background: transparent;
+  color: var(--brown);
+  font: 700 28px/1.2 var(--font-serif-ko);
+  letter-spacing: 0.08em;
+  outline: none;
+}
+.pass__input::placeholder { color: rgba(122, 86, 54, 0.55); font-size: 18px; font-weight: 400; letter-spacing: 0.04em; }
+.pass__input:focus { border-bottom-color: #7A1F1A; background: rgba(255, 248, 228, 0.35); }
+.pass__hint { display: block; margin-top: 6px; font: 400 11px var(--font-ui); color: var(--brown-soft); }
+.pass .dice { color: var(--brown); border-color: rgba(74, 40, 20, 0.45); }
+
+.pass__foot { display: flex; justify-content: space-between; gap: 10px; padding-top: 10px; font: 400 11px var(--font-ui); color: var(--brown-soft); letter-spacing: 0.06em; }
+
+/* 발권 도장 */
+.pass__stamp {
+  position: absolute;
+  right: 34px;
+  top: 46%;
+  display: grid;
+  place-items: center;
+  width: 92px; height: 92px;
+  border: 3px double rgba(140, 30, 24, 0.85);
+  border-radius: 50%;
+  color: rgba(140, 30, 24, 0.9);
+  font: 700 20px/1.1 var(--font-serif-ko);
+  letter-spacing: 0.2em;
+  text-align: center;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transform: rotate(-14deg) scale(1.8);
+  pointer-events: none;
+}
+.pass__stamp small { display: block; font: 400 10px var(--font-dot); letter-spacing: 0.05em; }
+
+/* 발권 진행: 도장 쾅 → 표가 아래로 빠져나감 */
+.booth.is-printing .pass__stamp { animation: stampIn 0.35s cubic-bezier(.4, 0, .6, 1.4) 0.15s forwards; }
+@keyframes stampIn {
+  to { opacity: 1; transform: rotate(-14deg) scale(1); }
+}
+.booth.is-printing .pass__input { border-bottom-color: transparent; background: transparent; }
+.booth.is-printing .pass .dice,
+.booth.is-printing .pass__hint,
+.booth.is-printing .pass__count { visibility: hidden; }
+.booth.is-issued .pass { animation: passOut 0.7s cubic-bezier(.6, 0, .8, .4) forwards; }
+@keyframes passOut {
+  to { transform: translateY(18%) rotate(3deg); opacity: 0; }
+}
+
+@media (max-width: 520px) {
+  .pass { padding: 18px 16px 14px; }
+  .pass__grid { grid-template-columns: 1fr 1fr; }
+  .pass__arrow { display: none; }
+  .pass__cell + .pass__cell:not(:nth-child(4)) { border-left: 0; padding-left: 0; }
+  .pass__cell:nth-child(even) { border-left: 1px solid rgba(74, 40, 20, 0.3) !important; padding-left: 12px !important; }
+  .pass__cell:nth-child(5) { display: none; }
+  .pass__cell:nth-child(6) { border-left: 0 !important; padding-left: 0 !important; }
+  .pass__top { flex-wrap: wrap; gap: 6px 10px; }
+  .pass__brand { white-space: nowrap; letter-spacing: 0.3em; }
+  .pass__no { margin-left: 0; width: 100%; text-align: center; }
+  .pass__v--big { font-size: 19px; }
+  .pass__stamp { right: 16px; width: 76px; height: 76px; font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pass, .booth.is-issued .pass { animation: none; }
+}
+.no-fx .pass { animation: none; }
+
+/* 입구 바로 아래 표 위쪽에 드리운 그림자 */
+.booth__mouth::before {
+  content: '';
+  position: absolute;
+  left: 10px; right: 10px; top: 0;
+  height: 22px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+@media (max-width: 520px) {
+  .booth__slot { height: 72px; }
+  .booth__rivet { top: 18px; }
+  .booth__rivet--l { left: 18px; }
+  .booth__rivet--r { right: 18px; }
+  .booth__label { letter-spacing: 0.22em; }
+}

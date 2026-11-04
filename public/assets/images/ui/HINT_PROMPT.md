@@ -1,0 +1,7 @@
+# Red hint paper
+
+Generated with the built-in image_gen editing tool, using choice-paper.png as the edit target. Saved as hint-paper.png with original transparency. Text and the HINT marker are live HTML.
+
+## Exact prompt
+
+Use case: precise-object-edit. Edit target: provided blank cream paper strip game UI asset. Create a matching PREMIUM RED PAPER HINT CHOICE asset for the same antique night-train mystery game. Preserve the exact image canvas dimensions, exact strip silhouette, position, transparent padding, nearly rectangular proportions and subtle worn irregular cut edges of the source. Change paper material to deep rich oxblood/burgundy red fine laid paper, elegantly tactile real paper fibers, restrained dark red natural grain. Add a very fine muted antique gold single-line inset rule tracing close to the paper edge, understated luxury printed stationery. The whole center stays completely EMPTY for live ivory/gold Korean HTML text. No text or glyphs whatsoever. No icons, no wax seal, no ribbon, no embossing, no flourishes, no stamps, no 3D folds. Preserve flat front-on orthographic scanned paper treatment and genuine transparent background; no surrounding mockup. Red should be unmistakeably a special hint card distinct from regular cream choice buttons while matching the game's dark amber vintage materials. Avoid bright scarlet, pink, glossy plastic, metal panel, fake gradient, strong glow, excessive tears or ornate framing. Same asset geometry, change material and tiny inset rule only.

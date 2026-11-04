@@ -8,6 +8,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .local/
+runtime/
+dist/
 *.sqlite3
 
 # 분석용으로 내려받은 이전 기수 저장소와 내부 작업 메모
