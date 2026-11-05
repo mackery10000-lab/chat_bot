@@ -1,0 +1,238 @@
+{
+  "records": [
+    {
+      "eyebrow": "PASSENGER TICKET",
+      "title": "승차권",
+      "fields": [
+        [
+          "발급 연도",
+          "2026"
+        ],
+        [
+          "열차",
+          "13-Fri"
+        ],
+        [
+          "탑승역",
+          "서울역"
+        ],
+        [
+          "출발 시각",
+          "23:59"
+        ]
+      ],
+      "paragraphs": [
+        "탑승할 때 받은 승차권이다. 발급 연도와 열차 번호를 확인할 수 있다."
+      ],
+      "id": "ticket_current",
+      "kind": "ticket",
+      "artwork": "/assets/images/inventory/records/ticket-current.png"
+    },
+    {
+      "eyebrow": "2026 · 실종 10년 추적 기사",
+      "title": "23시 59분 출발 열차, 흔적도 없이 사라져",
+      "fields": [
+        [
+          "발행 연도",
+          "2026"
+        ],
+        [
+          "자료 속 열차 번호",
+          "13-Fri"
+        ],
+        [
+          "사건 연도",
+          "2016"
+        ]
+      ],
+      "paragraphs": [
+        "서울역에서 23시 59분에 출발한 열차가 흔적도 없이 사라졌다. 사진 속 열차에는 13-Fri라는 식별명이 남아 있다.",
+        "도착해야 할 역의 이름은 기록에서 확인할 수 없다."
+      ],
+      "image": "/assets/images/evidence_01.png",
+      "id": "newspaper",
+      "kind": "newspaper",
+      "artwork": "/assets/images/inventory/records/newspaper.png"
+    },
+    {
+      "eyebrow": "EXPLORER’S EQUIPMENT",
+      "title": "손전등",
+      "fields": [],
+      "paragraphs": [
+        "어두운 곳을 비출 수 있는 손전등이다. 사용하겠다는 행동을 입력하거나 보관함의 사용 버튼을 누를 수 있다."
+      ],
+      "id": "flashlight",
+      "kind": "flashlight",
+      "artwork": "/assets/images/inventory/records/flashlight.png"
+    },
+    {
+      "eyebrow": "FACILITY MANUAL",
+      "title": "전자 잠금장치 오류 발생 시",
+      "fields": [],
+      "paragraphs": [
+        "전자식 출입 장치가 작동하지 않을 경우, 비상 개방 장치를 이용하여 출입문을 수동으로 개방할 수 있다.",
+        "1. 출입문 오른쪽 하단의 사각형 점검 덮개를 확인한다.",
+        "2. 덮개를 열어 내부의 노란색 수동 해제 레버를 찾는다.",
+        "3. 레버를 아래쪽으로 끝까지 내린다.",
+        "4. 잠금 해제음이 들리면 문을 열고 승무원실로 들어간다."
+      ],
+      "id": "facility_manual",
+      "kind": "manual",
+      "artwork": "/assets/images/inventory/records/facility-manual.png"
+    },
+    {
+      "eyebrow": "ARCHIVED TICKET",
+      "title": "오래된 승차권",
+      "fields": [
+        [
+          "발급 연도",
+          "2016"
+        ],
+        [
+          "열차",
+          "13-Fri"
+        ],
+        [
+          "탑승역",
+          "서울역"
+        ],
+        [
+          "출발 시각",
+          "23:59"
+        ],
+        [
+          "예정 도착",
+          "다음 날 02:00"
+        ],
+        [
+          "하차역",
+          "훼손되어 판독 불가"
+        ]
+      ],
+      "paragraphs": [
+        "누렇게 바랜 종이에 검표 구멍이 뚫려 있다. 하차역 글자는 알아볼 수 없을 정도로 훼손되었다."
+      ],
+      "id": "ticket_old",
+      "kind": "ticket-old",
+      "artwork": "/assets/images/inventory/records/ticket-old.png"
+    },
+    {
+      "eyebrow": "2016 · 철도 안전 관리 기록",
+      "title": "2016년 아지산역 폐쇄 예정 및 선로 통제 보고서",
+      "fields": [],
+      "paragraphs": [
+        "1. 폐쇄 사유 — 아지산역은 급커브와 가파른 경사로 인해 탈선 및 충돌 사고가 반복적으로 발생한 구간으로, 2016년 운영 중단이 예정되어 있다.",
+        "2. 선로 구조 — 아지산역은 본선에서 갈라지는 별도의 산악 선로를 통해 진입할 수 있다.",
+        "3. 분기기 통제 — 해당 분기 선로는 안전상의 이유로 잠금 처리되며, 기관실에서만 제어할 수 있다.",
+        "4. 잠금 해제 — 분기기 제어 장치에는 4자리 비밀번호가 필요하다. 비밀번호는 서류에 직접 기재되어 있지 않다.",
+        "5. 자동 정차 — 아지산역 선로 진입 시 자동 정차 시스템이 작동한다."
+      ],
+      "id": "route_report",
+      "kind": "report",
+      "artwork": "/assets/images/inventory/records/route-report.png"
+    },
+    {
+      "id": "elder_testimony",
+      "kind": "note",
+      "eyebrow": "WITNESS NOTE",
+      "title": "노인의 증언",
+      "fields": [],
+      "paragraphs": [],
+      "artwork": "/assets/images/inventory/records/elder-testimony-00.png"
+    },
+    {
+      "id": "elder_testimony",
+      "kind": "note",
+      "eyebrow": "WITNESS NOTE",
+      "title": "노인의 증언",
+      "fields": [],
+      "paragraphs": [
+        "승차권은 누렇게 바랜 종이에 구멍이 뚫려 있었다. 노인은 커피를 쏟은 뒤 승차권을 잃어버렸다고 했다."
+      ],
+      "artwork": "/assets/images/inventory/records/elder-testimony-10.png"
+    },
+    {
+      "id": "elder_testimony",
+      "kind": "note",
+      "eyebrow": "WITNESS NOTE",
+      "title": "노인의 증언",
+      "fields": [],
+      "paragraphs": [
+        "목적지에 “산”이라는 글자가 들어간다. 삶과 죽음의 경계라고 해서 그런 이름이 붙었다고 했다."
+      ],
+      "artwork": "/assets/images/inventory/records/elder-testimony-01.png"
+    },
+    {
+      "id": "elder_testimony",
+      "kind": "note",
+      "eyebrow": "WITNESS NOTE",
+      "title": "노인의 증언",
+      "fields": [],
+      "paragraphs": [
+        "승차권은 누렇게 바랜 종이에 구멍이 뚫려 있었다. 노인은 커피를 쏟은 뒤 승차권을 잃어버렸다고 했다.",
+        "목적지에 “산”이라는 글자가 들어간다. 삶과 죽음의 경계라고 해서 그런 이름이 붙었다고 했다."
+      ],
+      "artwork": "/assets/images/inventory/records/elder-testimony-11.png"
+    },
+    {
+      "eyebrow": "ARCHIVED TICKET",
+      "title": "오래된 승차권",
+      "fields": [
+        [
+          "발급 연도",
+          "2016"
+        ],
+        [
+          "열차",
+          "13-Fri"
+        ],
+        [
+          "탑승역",
+          "서울역"
+        ],
+        [
+          "출발 시각",
+          "23:59"
+        ],
+        [
+          "예정 도착",
+          "다음 날 02:00"
+        ],
+        [
+          "하차역",
+          "훼손되어 판독 불가"
+        ]
+      ],
+      "paragraphs": [
+        "누렇게 바랜 종이에 검표 구멍이 뚫려 있다. 하차역 글자는 알아볼 수 없을 정도로 훼손되었다.",
+        "원본은 노인에게 돌려드렸다. 이 화면은 당시 확인한 내용을 보존한 조사 기록이다."
+      ],
+      "id": "ticket_old",
+      "kind": "ticket-old",
+      "artwork": "/assets/images/inventory/records/ticket-old-returned.png"
+    },
+    {
+      "id": "elder_testimony",
+      "kind": "note",
+      "eyebrow": "WITNESS NOTE",
+      "title": "노인의 증언",
+      "fields": [],
+      "paragraphs": [],
+      "artwork": "/assets/images/inventory/records/elder-testimony.png"
+    }
+  ],
+  "actions": {
+    "confirm-report": "보고서 내용 확인",
+    "use-flashlight": "손전등 사용",
+    "return-ticket": "노인에게 원본 돌려드리기",
+    "show-ticket-record": "노인에게 조사 기록 보여주기",
+    "show-route-report": "승무원에게 보고서 보여주기",
+    "submit-evidence": "이 물건을 최종 증거로 제출",
+    "inventory-back": "소지품 펼쳐 보기",
+    "previous": "이전",
+    "next": "다음",
+    "confirm-final": "최종 확정",
+    "cancel-review": "취소하고 다시 살펴보기",
+    "abandon-final": "탈출을 포기한다"
+  }
+}

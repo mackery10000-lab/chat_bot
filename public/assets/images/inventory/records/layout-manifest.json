@@ -1,0 +1,1102 @@
+﻿{
+    "canvas":  [
+                   900,
+                   1120
+               ],
+    "font":  "Nanum Myeongjo ExtraBold",
+    "contentBottom":  730,
+    "records":  {
+                    "ticket-current.png":  {
+                                               "lines":  [
+                                                             {
+                                                                 "text":  "승차권",
+                                                                 "width":  142.53,
+                                                                 "y":  28,
+                                                                 "x":  42,
+                                                                 "leading":  64,
+                                                                 "size":  50
+                                                             },
+                                                             {
+                                                                 "text":  "탑승할 때 받은 승차권이다.",
+                                                                 "width":  392.56,
+                                                                 "y":  128,
+                                                                 "x":  46,
+                                                                 "leading":  45,
+                                                                 "size":  34
+                                                             },
+                                                             {
+                                                                 "text":  "발급 연도와 열차 번호를 확인할 수 있다.",
+                                                                 "width":  581.98,
+                                                                 "y":  173,
+                                                                 "x":  46,
+                                                                 "leading":  45,
+                                                                 "size":  34
+                                                             },
+                                                             {
+                                                                 "text":  "발급 연도",
+                                                                 "width":  134.45,
+                                                                 "y":  253,
+                                                                 "x":  48,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "2026",
+                                                                 "width":  70.9,
+                                                                 "y":  253,
+                                                                 "x":  320,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "열차",
+                                                                 "width":  62.71,
+                                                                 "y":  314,
+                                                                 "x":  48,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "13-Fri",
+                                                                 "width":  96.45,
+                                                                 "y":  314,
+                                                                 "x":  320,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "탑승역",
+                                                                 "width":  94.07,
+                                                                 "y":  375,
+                                                                 "x":  48,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "서울역",
+                                                                 "width":  94.07,
+                                                                 "y":  375,
+                                                                 "x":  320,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "출발 시각",
+                                                                 "width":  134.45,
+                                                                 "y":  436,
+                                                                 "x":  48,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             },
+                                                             {
+                                                                 "text":  "23:59",
+                                                                 "width":  84.43,
+                                                                 "y":  436,
+                                                                 "x":  320,
+                                                                 "leading":  43,
+                                                                 "size":  33
+                                                             }
+                                                         ],
+                                               "documentId":  "ticket_current",
+                                               "inkBounds":  [
+                                                                 32,
+                                                                 32,
+                                                                 869,
+                                                                 489
+                                                             ]
+                                           },
+                    "newspaper.png":  {
+                                          "lines":  [
+                                                        {
+                                                            "text":  "23시 59분 출발 열차,",
+                                                            "width":  402.45,
+                                                            "y":  28,
+                                                            "x":  42,
+                                                            "leading":  56,
+                                                            "size":  45
+                                                        },
+                                                        {
+                                                            "text":  "흔적도 없이 사라져",
+                                                            "width":  366.68,
+                                                            "y":  84,
+                                                            "x":  42,
+                                                            "leading":  56,
+                                                            "size":  45
+                                                        },
+                                                        {
+                                                            "text":  "서울역에서 23시 59분에 출발한 열차가 흔적도 없이",
+                                                            "width":  698.97,
+                                                            "y":  176,
+                                                            "x":  46,
+                                                            "leading":  42,
+                                                            "size":  32
+                                                        },
+                                                        {
+                                                            "text":  "사라졌다.",
+                                                            "width":  130.38,
+                                                            "y":  218,
+                                                            "x":  46,
+                                                            "leading":  42,
+                                                            "size":  32
+                                                        },
+                                                        {
+                                                            "text":  "사진 속 열차에는 13-Fri라는 식별명이 남아 있다.",
+                                                            "width":  671.69,
+                                                            "y":  260,
+                                                            "x":  46,
+                                                            "leading":  42,
+                                                            "size":  32
+                                                        },
+                                                        {
+                                                            "text":  "도착해야 할 역의 이름은 기록에서 확인할 수 없다.",
+                                                            "width":  678.12,
+                                                            "y":  316,
+                                                            "x":  46,
+                                                            "leading":  42,
+                                                            "size":  32
+                                                        },
+                                                        {
+                                                            "text":  "발행 연도",
+                                                            "width":  134.45,
+                                                            "y":  393,
+                                                            "x":  48,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "2026",
+                                                            "width":  70.9,
+                                                            "y":  393,
+                                                            "x":  320,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "자료 속 열차",
+                                                            "width":  174.83,
+                                                            "y":  454,
+                                                            "x":  48,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "번호",
+                                                            "width":  62.71,
+                                                            "y":  497,
+                                                            "x":  48,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "13-Fri",
+                                                            "width":  96.45,
+                                                            "y":  454,
+                                                            "x":  320,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "사건 연도",
+                                                            "width":  134.45,
+                                                            "y":  558,
+                                                            "x":  48,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        },
+                                                        {
+                                                            "text":  "2016",
+                                                            "width":  70.9,
+                                                            "y":  558,
+                                                            "x":  320,
+                                                            "leading":  43,
+                                                            "size":  33
+                                                        }
+                                                    ],
+                                          "documentId":  "newspaper",
+                                          "inkBounds":  [
+                                                            32,
+                                                            31,
+                                                            869,
+                                                            611
+                                                        ]
+                                      },
+                    "flashlight.png":  {
+                                           "lines":  [
+                                                         {
+                                                             "text":  "손전등",
+                                                             "width":  142.53,
+                                                             "y":  28,
+                                                             "x":  42,
+                                                             "leading":  64,
+                                                             "size":  50
+                                                         },
+                                                         {
+                                                             "text":  "용도",
+                                                             "width":  57.01,
+                                                             "y":  128,
+                                                             "x":  46,
+                                                             "leading":  41,
+                                                             "size":  30
+                                                         },
+                                                         {
+                                                             "text":  "어두운 곳을 비출 수 있는 손전등이다.",
+                                                             "width":  572.17,
+                                                             "y":  173,
+                                                             "x":  46,
+                                                             "leading":  48,
+                                                             "size":  36
+                                                         },
+                                                         {
+                                                             "text":  "사용 방법",
+                                                             "width":  122.23,
+                                                             "y":  269,
+                                                             "x":  46,
+                                                             "leading":  41,
+                                                             "size":  30
+                                                         },
+                                                         {
+                                                             "text":  "사용하겠다는 행동을 입력하거나 보관함의 사용",
+                                                             "width":  723.52,
+                                                             "y":  314,
+                                                             "x":  46,
+                                                             "leading":  48,
+                                                             "size":  36
+                                                         },
+                                                         {
+                                                             "text":  "버튼을 누를 수 있다.",
+                                                             "width":  313.03,
+                                                             "y":  362,
+                                                             "x":  46,
+                                                             "leading":  48,
+                                                             "size":  36
+                                                         }
+                                                     ],
+                                           "documentId":  "flashlight",
+                                           "inkBounds":  [
+                                                             32,
+                                                             32,
+                                                             869,
+                                                             435
+                                                         ]
+                                       },
+                    "facility-manual.png":  {
+                                                "lines":  [
+                                                              {
+                                                                  "text":  "전자 잠금장치 오류 발생 시",
+                                                                  "width":  519.57,
+                                                                  "y":  28,
+                                                                  "x":  42,
+                                                                  "leading":  58,
+                                                                  "size":  45
+                                                              },
+                                                              {
+                                                                  "text":  "전자식 출입 장치가 작동하지 않을 경우, 비상 개방 장치를",
+                                                                  "width":  778.09,
+                                                                  "y":  122,
+                                                                  "x":  46,
+                                                                  "leading":  42,
+                                                                  "size":  32
+                                                              },
+                                                              {
+                                                                  "text":  "이용하여 출입문을 수동으로 개방할 수 있다.",
+                                                                  "width":  599.81,
+                                                                  "y":  164,
+                                                                  "x":  46,
+                                                                  "leading":  42,
+                                                                  "size":  32
+                                                              },
+                                                              {
+                                                                  "text":  "1.",
+                                                                  "width":  27.56,
+                                                                  "y":  240,
+                                                                  "x":  46,
+                                                                  "leading":  44,
+                                                                  "size":  34
+                                                              },
+                                                              {
+                                                                  "text":  "출입문 오른쪽 하단의 사각형 점검 덮개를 확인한다.",
+                                                                  "width":  721.65,
+                                                                  "y":  240,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              },
+                                                              {
+                                                                  "text":  "2.",
+                                                                  "width":  27.56,
+                                                                  "y":  308,
+                                                                  "x":  46,
+                                                                  "leading":  44,
+                                                                  "size":  34
+                                                              },
+                                                              {
+                                                                  "text":  "덮개를 열어 내부의 노란색 수동 해제 레버를",
+                                                                  "width":  618.56,
+                                                                  "y":  308,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              },
+                                                              {
+                                                                  "text":  "찾는다.",
+                                                                  "width":  103.09,
+                                                                  "y":  352,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              },
+                                                              {
+                                                                  "text":  "3.",
+                                                                  "width":  27.56,
+                                                                  "y":  420,
+                                                                  "x":  46,
+                                                                  "leading":  44,
+                                                                  "size":  34
+                                                              },
+                                                              {
+                                                                  "text":  "레버를 아래쪽으로 끝까지 내린다.",
+                                                                  "width":  475.08,
+                                                                  "y":  420,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              },
+                                                              {
+                                                                  "text":  "4.",
+                                                                  "width":  27.56,
+                                                                  "y":  488,
+                                                                  "x":  46,
+                                                                  "leading":  44,
+                                                                  "size":  34
+                                                              },
+                                                              {
+                                                                  "text":  "잠금 해제음이 들리면 문을 열고 승무원실로",
+                                                                  "width":  609.53,
+                                                                  "y":  488,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              },
+                                                              {
+                                                                  "text":  "들어간다.",
+                                                                  "width":  134.45,
+                                                                  "y":  532,
+                                                                  "x":  122,
+                                                                  "leading":  44,
+                                                                  "size":  33
+                                                              }
+                                                          ],
+                                                "documentId":  "facility_manual",
+                                                "inkBounds":  [
+                                                                  32,
+                                                                  31,
+                                                                  869,
+                                                                  589
+                                                              ]
+                                            },
+                    "ticket-old.png":  {
+                                           "lines":  [
+                                                         {
+                                                             "text":  "오래된 승차권",
+                                                             "width":  298.73,
+                                                             "y":  28,
+                                                             "x":  42,
+                                                             "leading":  64,
+                                                             "size":  50
+                                                         },
+                                                         {
+                                                             "text":  "누렇게 바랜 종이에 검표 구멍이 뚫려 있다.",
+                                                             "width":  614.29,
+                                                             "y":  128,
+                                                             "x":  46,
+                                                             "leading":  45,
+                                                             "size":  34
+                                                         },
+                                                         {
+                                                             "text":  "하차역 글자는 알아볼 수 없을 정도로 훼손되었다.",
+                                                             "width":  711.21,
+                                                             "y":  173,
+                                                             "x":  46,
+                                                             "leading":  45,
+                                                             "size":  34
+                                                         },
+                                                         {
+                                                             "text":  "발급 연도",
+                                                             "width":  134.45,
+                                                             "y":  253,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "2016",
+                                                             "width":  70.9,
+                                                             "y":  253,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "열차",
+                                                             "width":  62.71,
+                                                             "y":  314,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "13-Fri",
+                                                             "width":  96.45,
+                                                             "y":  314,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "탑승역",
+                                                             "width":  94.07,
+                                                             "y":  375,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "서울역",
+                                                             "width":  94.07,
+                                                             "y":  375,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "출발 시각",
+                                                             "width":  134.45,
+                                                             "y":  436,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "23:59",
+                                                             "width":  84.43,
+                                                             "y":  436,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "예정 도착",
+                                                             "width":  134.45,
+                                                             "y":  497,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "다음 날 02:00",
+                                                             "width":  196.55,
+                                                             "y":  497,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "하차역",
+                                                             "width":  94.07,
+                                                             "y":  558,
+                                                             "x":  48,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         },
+                                                         {
+                                                             "text":  "훼손되어 판독 불가",
+                                                             "width":  268.9,
+                                                             "y":  558,
+                                                             "x":  320,
+                                                             "leading":  43,
+                                                             "size":  33
+                                                         }
+                                                     ],
+                                           "documentId":  "ticket_old",
+                                           "inkBounds":  [
+                                                             32,
+                                                             32,
+                                                             869,
+                                                             611
+                                                         ]
+                                       },
+                    "route-report.png":  {
+                                             "lines":  [
+                                                           {
+                                                               "text":  "2016년 아지산역",
+                                                               "width":  308.43,
+                                                               "y":  28,
+                                                               "x":  42,
+                                                               "leading":  54,
+                                                               "size":  43
+                                                           },
+                                                           {
+                                                               "text":  "폐쇄 예정 및 선로 통제 보고서",
+                                                               "width":  549.09,
+                                                               "y":  82,
+                                                               "x":  42,
+                                                               "leading":  54,
+                                                               "size":  43
+                                                           },
+                                                           {
+                                                               "text":  "1.",
+                                                               "width":  21.07,
+                                                               "y":  182,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "폐쇄 사유",
+                                                               "width":  105.93,
+                                                               "y":  216,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "아지산역은 급커브와 가파른 경사로 인해 탈선 및",
+                                                               "width":  619.34,
+                                                               "y":  182,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "충돌 사고가 반복적으로 발생한 구간으로, 2016년",
+                                                               "width":  626.78,
+                                                               "y":  221,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "운영 중단이 예정되어 있다.",
+                                                               "width":  346.38,
+                                                               "y":  260,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "2.",
+                                                               "width":  21.07,
+                                                               "y":  314,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "선로 구조",
+                                                               "width":  105.93,
+                                                               "y":  348,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "아지산역은 본선에서 갈라지는 별도의 산악",
+                                                               "width":  545.92,
+                                                               "y":  314,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "선로를 통해 진입할 수 있다.",
+                                                               "width":  354.58,
+                                                               "y":  353,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "3.",
+                                                               "width":  21.07,
+                                                               "y":  407,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "분기기 통제",
+                                                               "width":  130.63,
+                                                               "y":  441,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "해당 분기 선로는 안전상의 이유로 잠금 처리되며,",
+                                                               "width":  627.54,
+                                                               "y":  407,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "기관실에서만 제어할 수 있다.",
+                                                               "width":  374.88,
+                                                               "y":  446,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "4.",
+                                                               "width":  21.07,
+                                                               "y":  500,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "잠금 해제",
+                                                               "width":  105.93,
+                                                               "y":  534,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "분기기 제어 장치에는 4자리 비밀번호가",
+                                                               "width":  505.02,
+                                                               "y":  500,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "필요하다. 비밀번호는 서류에 직접 기재되어 있지",
+                                                               "width":  619.34,
+                                                               "y":  539,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "않다.",
+                                                               "width":  65.21,
+                                                               "y":  578,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "5.",
+                                                               "width":  21.07,
+                                                               "y":  632,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "자동 정차",
+                                                               "width":  105.93,
+                                                               "y":  666,
+                                                               "x":  44,
+                                                               "leading":  34,
+                                                               "size":  26
+                                                           },
+                                                           {
+                                                               "text":  "아지산역 선로 진입 시 자동 정차 시스템이",
+                                                               "width":  533.82,
+                                                               "y":  632,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           },
+                                                           {
+                                                               "text":  "작동한다.",
+                                                               "width":  122.23,
+                                                               "y":  671,
+                                                               "x":  218,
+                                                               "leading":  39,
+                                                               "size":  30
+                                                           }
+                                                       ],
+                                             "documentId":  "route_report",
+                                             "inkBounds":  [
+                                                               32,
+                                                               31,
+                                                               869,
+                                                               716
+                                                           ]
+                                         },
+                    "elder-testimony-00.png":  {
+                                                   "lines":  [
+                                                                 {
+                                                                     "text":  "노인의 증언",
+                                                                     "width":  251.22,
+                                                                     "y":  28,
+                                                                     "x":  42,
+                                                                     "leading":  64,
+                                                                     "size":  50
+                                                                 }
+                                                             ],
+                                                   "documentId":  "elder_testimony",
+                                                   "inkBounds":  [
+                                                                     32,
+                                                                     32,
+                                                                     869,
+                                                                     106
+                                                                 ]
+                                               },
+                    "elder-testimony-10.png":  {
+                                                   "lines":  [
+                                                                 {
+                                                                     "text":  "노인의 증언",
+                                                                     "width":  251.22,
+                                                                     "y":  28,
+                                                                     "x":  42,
+                                                                     "leading":  64,
+                                                                     "size":  50
+                                                                 },
+                                                                 {
+                                                                     "text":  "승차권 외형",
+                                                                     "width":  140.68,
+                                                                     "y":  128,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "승차권은 누렇게 바랜 종이에 구멍이 뚫려 있었다.",
+                                                                     "width":  711.21,
+                                                                     "y":  167,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 },
+                                                                 {
+                                                                     "text":  "분실 경위",
+                                                                     "width":  114.08,
+                                                                     "y":  243,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "노인은 커피를 쏟은 뒤 승차권을 잃어버렸다고 했다.",
+                                                                     "width":  743.52,
+                                                                     "y":  282,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 }
+                                                             ],
+                                                   "documentId":  "elder_testimony",
+                                                   "inkBounds":  [
+                                                                     32,
+                                                                     32,
+                                                                     869,
+                                                                     341
+                                                                 ]
+                                               },
+                    "elder-testimony-01.png":  {
+                                                   "lines":  [
+                                                                 {
+                                                                     "text":  "노인의 증언",
+                                                                     "width":  251.22,
+                                                                     "y":  28,
+                                                                     "x":  42,
+                                                                     "leading":  64,
+                                                                     "size":  50
+                                                                 },
+                                                                 {
+                                                                     "text":  "목적지 기억",
+                                                                     "width":  140.68,
+                                                                     "y":  128,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "목적지에 “산”이라는 글자가 들어간다.",
+                                                                     "width":  551.74,
+                                                                     "y":  167,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 },
+                                                                 {
+                                                                     "text":  "이름의 유래",
+                                                                     "width":  140.68,
+                                                                     "y":  243,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "삶과 죽음의 경계라고 해서 그런 이름이 붙었다고 했다.",
+                                                                     "width":  785.12,
+                                                                     "y":  282,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 }
+                                                             ],
+                                                   "documentId":  "elder_testimony",
+                                                   "inkBounds":  [
+                                                                     32,
+                                                                     32,
+                                                                     869,
+                                                                     341
+                                                                 ]
+                                               },
+                    "elder-testimony-11.png":  {
+                                                   "lines":  [
+                                                                 {
+                                                                     "text":  "노인의 증언",
+                                                                     "width":  251.22,
+                                                                     "y":  28,
+                                                                     "x":  42,
+                                                                     "leading":  64,
+                                                                     "size":  50
+                                                                 },
+                                                                 {
+                                                                     "text":  "승차권 외형",
+                                                                     "width":  140.68,
+                                                                     "y":  128,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "승차권은 누렇게 바랜 종이에 구멍이 뚫려 있었다.",
+                                                                     "width":  711.21,
+                                                                     "y":  167,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 },
+                                                                 {
+                                                                     "text":  "분실 경위",
+                                                                     "width":  114.08,
+                                                                     "y":  243,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "노인은 커피를 쏟은 뒤 승차권을 잃어버렸다고 했다.",
+                                                                     "width":  743.52,
+                                                                     "y":  282,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 },
+                                                                 {
+                                                                     "text":  "목적지 기억",
+                                                                     "width":  140.68,
+                                                                     "y":  358,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "목적지에 “산”이라는 글자가 들어간다.",
+                                                                     "width":  551.74,
+                                                                     "y":  397,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 },
+                                                                 {
+                                                                     "text":  "이름의 유래",
+                                                                     "width":  140.68,
+                                                                     "y":  473,
+                                                                     "x":  46,
+                                                                     "leading":  38,
+                                                                     "size":  28
+                                                                 },
+                                                                 {
+                                                                     "text":  "삶과 죽음의 경계라고 해서 그런 이름이 붙었다고 했다.",
+                                                                     "width":  785.12,
+                                                                     "y":  512,
+                                                                     "x":  46,
+                                                                     "leading":  44,
+                                                                     "size":  34
+                                                                 }
+                                                             ],
+                                                   "documentId":  "elder_testimony",
+                                                   "inkBounds":  [
+                                                                     32,
+                                                                     32,
+                                                                     869,
+                                                                     571
+                                                                 ]
+                                               },
+                    "ticket-old-returned.png":  {
+                                                    "lines":  [
+                                                                  {
+                                                                      "text":  "오래된 승차권",
+                                                                      "width":  298.73,
+                                                                      "y":  28,
+                                                                      "x":  42,
+                                                                      "leading":  64,
+                                                                      "size":  50
+                                                                  },
+                                                                  {
+                                                                      "text":  "누렇게 바랜 종이에 검표 구멍이 뚫려 있다.",
+                                                                      "width":  614.29,
+                                                                      "y":  128,
+                                                                      "x":  46,
+                                                                      "leading":  45,
+                                                                      "size":  34
+                                                                  },
+                                                                  {
+                                                                      "text":  "하차역 글자는 알아볼 수 없을 정도로 훼손되었다.",
+                                                                      "width":  711.21,
+                                                                      "y":  173,
+                                                                      "x":  46,
+                                                                      "leading":  45,
+                                                                      "size":  34
+                                                                  },
+                                                                  {
+                                                                      "text":  "발급 연도",
+                                                                      "width":  134.45,
+                                                                      "y":  253,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "2016",
+                                                                      "width":  70.9,
+                                                                      "y":  253,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "열차",
+                                                                      "width":  62.71,
+                                                                      "y":  314,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "13-Fri",
+                                                                      "width":  96.45,
+                                                                      "y":  314,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "탑승역",
+                                                                      "width":  94.07,
+                                                                      "y":  375,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "서울역",
+                                                                      "width":  94.07,
+                                                                      "y":  375,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "출발 시각",
+                                                                      "width":  134.45,
+                                                                      "y":  436,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "23:59",
+                                                                      "width":  84.43,
+                                                                      "y":  436,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "예정 도착",
+                                                                      "width":  134.45,
+                                                                      "y":  497,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "다음 날 02:00",
+                                                                      "width":  196.55,
+                                                                      "y":  497,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "하차역",
+                                                                      "width":  94.07,
+                                                                      "y":  558,
+                                                                      "x":  48,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "훼손되어 판독 불가",
+                                                                      "width":  268.9,
+                                                                      "y":  558,
+                                                                      "x":  320,
+                                                                      "leading":  43,
+                                                                      "size":  33
+                                                                  },
+                                                                  {
+                                                                      "text":  "원본은 노인에게 돌려드렸다. 이 화면은 당시 확인한 내용을",
+                                                                      "width":  724.77,
+                                                                      "y":  632,
+                                                                      "x":  46,
+                                                                      "leading":  39,
+                                                                      "size":  29
+                                                                  },
+                                                                  {
+                                                                      "text":  "보존한 조사 기록이다.",
+                                                                      "width":  271.79,
+                                                                      "y":  671,
+                                                                      "x":  46,
+                                                                      "leading":  39,
+                                                                      "size":  29
+                                                                  }
+                                                              ],
+                                                    "documentId":  "ticket_old",
+                                                    "inkBounds":  [
+                                                                      32,
+                                                                      32,
+                                                                      869,
+                                                                      701
+                                                                  ]
+                                                },
+                    "elder-testimony.png":  {
+                                                "lines":  [
+                                                              {
+                                                                  "text":  "노인의 증언",
+                                                                  "width":  251.22,
+                                                                  "y":  28,
+                                                                  "x":  42,
+                                                                  "leading":  64,
+                                                                  "size":  50
+                                                              }
+                                                          ],
+                                                "documentId":  "elder_testimony",
+                                                "inkBounds":  [
+                                                                  32,
+                                                                  32,
+                                                                  869,
+                                                                  106
+                                                              ]
+                                            }
+                }
+}

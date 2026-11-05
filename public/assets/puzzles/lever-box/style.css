@@ -1,0 +1,114 @@
+:host {
+  --font-ui: RenaissanceText, TrainKorean, 'Malgun Gothic', sans-serif;
+  --bg: #0F0C0A;
+  --brass: #E8CB84;
+}
+
+* { box-sizing: border-box; }
+:host { font-family: var(--font-ui); color: #CDB78A; }
+
+.stage {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px;
+}
+
+/* 그림 비율(1188×798)을 유지하는 상자 */
+.box {
+  position: relative;
+  width: min(100%, 1000px, calc((100dvh - 260px) * 1188 / 798));
+  aspect-ratio: 1188 / 798;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.box__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* ---------- 레버 ----------
+   마인크래프트 레버처럼 아래 원통을 축으로 앞쪽으로 넘어가 비스듬히 아래를 향함 */
+.lever {
+  position: absolute;
+  /* 누를 수 있는 영역: 손잡이 + 아래 원통 (원본 px) */
+  left: calc(722 / 1188 * 100%);
+  top: calc(170 / 798 * 100%);
+  width: calc(126 / 1188 * 100%);
+  height: calc(335 / 798 * 100%);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 12px;
+  perspective: 900px;
+  perspective-origin: 50% 78%;
+}
+.lever:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; }
+
+.lever__handle {
+  position: absolute;
+  /* 손잡이 원래 위치 (758,180), 크기 52×221 */
+  left: calc((758 - 722) / 126 * 100%);
+  top: calc((180 - 170) / 335 * 100%);
+  width: calc(52 / 126 * 100%);
+  height: auto;
+  /* 회전축: 그림 속 원통 중심 (785, 432) */
+  transform-origin: 52% 114%;
+  transform: rotateX(0deg);
+  transition: transform 0.45s cubic-bezier(.5, 0, .3, 1.25), filter 0.3s ease;
+  pointer-events: none;
+}
+.lever:hover .lever__handle,
+.lever:focus-visible .lever__handle {
+  filter: drop-shadow(0 0 8px rgba(255, 210, 90, 0.55)) brightness(1.08);
+}
+
+/* 내려간 상태 */
+.lever.is-down .lever__handle {
+  transform: rotateX(-115deg);
+  filter: brightness(0.9) drop-shadow(0 -4px 6px rgba(0, 0, 0, 0.55));
+}
+.lever.is-down:hover .lever__handle {
+  filter: brightness(0.98) drop-shadow(0 0 8px rgba(255, 210, 90, 0.5));
+}
+
+.box.is-locked .lever { pointer-events: none; cursor: default; }
+
+.status {
+  margin: 0;
+  min-height: 1.6em;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lever__handle { transition: none; }
+}
+
+/* The supplied artwork is isolated from the surrounding game UI. */
+:host { display: block; width: 100%; color-scheme: normal; }
+button, input { font-family: inherit; }
+button { touch-action: manipulation; }
+button:disabled { cursor: default; }
+[hidden] { display: none !important; }
+.lever { touch-action: none; }
+:host([data-reduced-motion]) *, :host([data-reduced-motion]) *::before { animation: none !important; transition: none !important; }
+.box__bg { object-fit: contain; }
+.lever { visibility: visible; }
+.cover-closed .box__bg { filter: brightness(.22) blur(3px); }
+.cover-closed .lever { visibility: hidden; }
+.cover-shade { position: absolute; inset: 0; display: grid; place-items: center; }
+.box:not(.cover-closed) .cover-shade { display: none; }
+.puzzle-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.puzzle-actions button, .cover-button { padding: 10px 18px; border: 1px solid #947448; border-radius: 3px; background: #21190f; color: #e4cea3; font-size: 13px; cursor: pointer; }
+.puzzle-actions button:focus-visible, .cover-button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.puzzle-actions button:disabled { opacity: .5; }
